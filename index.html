@@ -53,7 +53,7 @@ a{color:var(--gold)}
 /* ---------- accueil : la scène ---------- */
 .curtain{position:relative;overflow:hidden;isolation:isolate;text-align:center;color:#fff;
   min-height:340px;padding:46px 16px 34px;border-bottom:5px solid var(--gold-2);
-  background:linear-gradient(rgba(22,14,23,.55),rgba(20,13,21,.8)),url('img/scene.webp') center/cover,
+  background:linear-gradient(rgba(22,14,23,.15),rgba(20,13,21,.55)),url('img/scene.webp') center/cover,url('img/scene.png') center/cover,url('img/scene.jpg') center/cover,
   radial-gradient(ellipse at 50% 100%,#7b3a33 0,#2a1520 70%)}
 .curtain .valance{position:absolute;left:0;right:0;top:0;height:30px;z-index:2;pointer-events:none;
   background:radial-gradient(ellipse at 50% 0,#a8203d 0,#a8203d 58%,transparent 60%) 0 0/48px 30px repeat-x,linear-gradient(#5d0d20,#8a1832);
@@ -128,7 +128,7 @@ h3{margin:0 0 8px;color:#f3d496}
 
 /* ---------- salle de spectacle ---------- */
 .theatre{position:relative;overflow:hidden;padding:18px 16px 0;border:2px solid #ae854a;
-  background:linear-gradient(rgba(36,24,34,.86),rgba(28,19,27,.94)),url('img/salle.webp') center/cover,linear-gradient(#2b1b26,#40242b)}
+  background:linear-gradient(rgba(36,24,34,.5),rgba(28,19,27,.82)),url('img/salle.webp') center/cover,url('img/salle.png') center/cover,url('img/salle.jpg') center/cover,linear-gradient(#2b1b26,#40242b)}
 .th-top{display:flex;justify-content:space-between;align-items:flex-start}
 .rank{font-size:1.6em;color:#ffda8b;line-height:1.15;margin:2px 0}
 .starcount{display:inline-flex;align-items:center;white-space:nowrap;margin-left:8px;padding:6px 14px;border-radius:999px;font-weight:900;font-size:1.1em;background:var(--gold);color:#2a1b14}
@@ -160,7 +160,7 @@ h3{margin:0 0 8px;color:#f3d496}
 .posters{display:flex;flex-wrap:wrap;margin:0 -7px}
 .poster{position:relative;width:calc(50% - 14px);min-height:236px;margin:7px;padding:22px 12px 16px;border-radius:9px;color:#fff;text-align:center;
   display:flex;flex-direction:column;align-items:center;justify-content:space-between;
-  background:linear-gradient(160deg,rgba(18,12,23,.45),rgba(0,0,0,.25)),url('img/affiche.webp') center/cover,linear-gradient(150deg,var(--pc,#7b2038),#1a101a 110%);
+  background:linear-gradient(160deg,rgba(18,12,23,.45),rgba(0,0,0,.25)),url('img/affiche.webp') center/cover,url('img/affiche.png') center/cover,linear-gradient(150deg,var(--pc,#7b2038),#1a101a 110%);
   border:2px solid #caa15b;box-shadow:0 8px 0 #110d13,0 12px 24px rgba(0,0,0,.45)}
 .poster:before{content:'';position:absolute;top:8px;left:8px;right:8px;bottom:8px;border:1px solid rgba(232,203,145,.8);border-radius:5px;pointer-events:none}
 .poster:active{-webkit-transform:translateY(2px);transform:translateY(2px)}
@@ -282,6 +282,8 @@ hr.sep{border:0;border-top:1px dashed #6a5860;margin:16px 0}
 .reward-item.locked .medal{-webkit-filter:grayscale(1);filter:grayscale(1);opacity:.45}
 .reward-item.got{border-color:var(--gold);box-shadow:0 0 18px rgba(240,205,128,.22)}
 .reward-item b{display:block}
+.diag li{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px dashed #64505a;font-size:.9em}
+.diag .y{color:#8be0b2;font-weight:800}.diag .n{color:#ffb1b1;font-weight:800}
 .reward-item .progress{height:8px;margin:8px 6px 2px}
 
 /* ---------- modale, toast, célébrations ---------- */
@@ -1171,7 +1173,7 @@ VIEWS.rewards = function(){
   for (i = 0; i < TROPHIES.length; i++){
     var tr = TROPHIES[i], got = n >= tr[1];
     h += '<div class="reward-item' + (got ? ' got' : ' locked') + '"><div class="medal" style="--mc:' + tr[3] + '">' + ic(tr[4]) +
-      '<img src="img/' + tr[2] + '" alt="" onerror="this.parentNode.removeChild(this)"></div><b>' + tr[0] + '</b>' +
+      '<img src="img/' + tr[2] + '" alt="" onerror="b2yImgNext(this)"></div><b>' + tr[0] + '</b>' +
       '<div class="small muted">' + (got ? 'Débloqué !' : n + ' / ' + tr[1] + ' étoiles') + '</div>' +
       (got ? '' : '<div class="progress"><i style="width:' + Math.round(n / tr[1] * 100) + '%"></i></div>') + '</div>';
   }
@@ -1736,6 +1738,7 @@ ACT.settings = function(){
     '<label class="f">Vitesse de la voix</label>' + seg('rate', [[0.7,'Lente'],[0.9,'Normale'],[1.1,'Rapide']]) +
     '<label class="f">Applaudissements</label>' + seg('sound', [[1,'Avec le son'],[0,'Sans le son']]) +
     '<hr class="sep">' +
+    '<button class="btn ghost big" data-act="diagImg">' + ic('eye') + 'Diagnostic des images</button>' +
     '<button class="btn ghost big" data-act="reloadDemo">' + ic('ticket') + 'Remettre les textes d\'exemple</button>' +
     '<button class="btn ghost big" data-act="wipe">' + ic('broom') + 'Tout effacer</button>' +
     '<button class="btn gold big" data-act="close">Fermer</button>');
@@ -1831,6 +1834,25 @@ if (hasTTS && window.speechSynthesis.onvoiceschanged !== undefined){ window.spee
 
 /* ---------------- navigation ---------------- */
 ACT.tab = function(el){ closeModal(); go(el.getAttribute('data-tab')); };
+window.b2yImgNext = function(el){
+  var src = el.getAttribute('src'), m = src.match(/\.(webp|png|jpg)$/), order = ['webp','png','jpg'];
+  var i = m ? order.indexOf(m[1]) : 2;
+  if (i < 2) el.setAttribute('src', src.replace(/\.(webp|png|jpg)$/, '.' + order[i + 1]));
+  else if (el.parentNode) el.parentNode.removeChild(el);
+};
+var IMG_LIST = [['scene','Fond de l\'accueil'],['salle','Fond de la salle'],['affiche','Texture des affiches'],['trophee-bronze','Trophée bronze'],['trophee-argent','Trophée argent'],['trophee-or','Trophée or'],['etoile','Trophée Légende']];
+ACT.diagImg = function(){
+  var h = '<h2>' + ic('eye') + 'Diagnostic des images</h2><p class="small muted">L\'appli cherche chaque image dans le dossier <b>img/</b> (en minuscules), à côté du fichier index.html, en .webp, .png ou .jpg.</p><ul class="diag" style="list-style:none;padding:0;margin:0">';
+  for (var i = 0; i < IMG_LIST.length; i++) h += '<li><span><b>' + IMG_LIST[i][1] + '</b><br><small class="muted">img/' + IMG_LIST[i][0] + '.webp</small></span><span id="dg' + i + '" class="muted">…</span></li>';
+  openModal(h + '</ul><p class="small muted">Adresse de la page : ' + esc(String(location.href).split('#')[0]) + '</p><button class="btn gold big" data-act="close">Fermer</button>');
+  function test(i, k){
+    var exts = ['webp','png','jpg'], im = new Image();
+    im.onload = function(){ var el = document.getElementById('dg' + i); if (el){ el.className = 'y'; el.textContent = 'trouvée (.' + exts[k] + ')'; } };
+    im.onerror = function(){ if (k < 2) test(i, k + 1); else { var el = document.getElementById('dg' + i); if (el){ el.className = 'n'; el.textContent = 'introuvable'; } } };
+    im.src = 'img/' + IMG_LIST[i][0] + '.' + exts[k] + '?t=' + Date.now();
+  }
+  for (var j = 0; j < IMG_LIST.length; j++) test(j, 0);
+};
 ACT.nextPractice = function(){ var t = prioritized(); if (t) go('loge', { id:t.id }); else if (S.texts.length) go('texts'); else go('editor', {}); };
 
 /* ---------------- démarrage ---------------- */
