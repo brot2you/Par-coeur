@@ -2,350 +2,194 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#1a1218">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Par Cœur ! — apprends tes textes et tes leçons</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Lexend:wght@400;600&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* =========================================================
-   PAR CŒUR ! — Theatre Pop Premium
-   Palette : rouge rideau · or · crème · noir velours
-   ========================================================= */
-:root{
-  --night:#151219; --night-2:#1d1820; --panel:#25202a; --panel-2:#2f2832; --line:#5e4b54;
-  --velvet:#9a1d38; --velvet-d:#5f0f24; --velvet-l:#c8405b;
-  --gold:#f0cd80; --gold-2:#dcae5a; --gold-d:#9c6a26;
-  --cream:#fff5e5; --muted:#cdbfb6; --ok:#3aa877; --ok-d:#1f6b4b; --bad:#d85c64; --bad-d:#7e2230; --warn:#f4bf64;
-}
+:root{--velvet:#8b1428;--velvet-d:#55091a;--gold:#f2c14e;--gold-d:#c48a1e;--cream:#fbf3e4;--paper:#fffdf8;--ink:#2a1a14;--muted:#7a6255;--ok:#23854f;--warn:#c77400;--bad:#c0392b}
 *{box-sizing:border-box}
-html{background:var(--night)}
 html,body{margin:0;padding:0}
-body{font-family:'Nunito',system-ui,-apple-system,sans-serif;font-size:17px;line-height:1.5;color:var(--cream);
-  background:radial-gradient(ellipse at 50% -10%,#3a2330 0,var(--night) 60%) fixed;min-height:100vh;-webkit-text-size-adjust:100%}
-body.has-nav{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+body{font-family:'Nunito',system-ui,-apple-system,sans-serif;background:var(--cream);color:var(--ink);font-size:17px;line-height:1.5;-webkit-text-size-adjust:100%;min-height:100vh}
 body.f-lexend{font-family:'Lexend',system-ui,sans-serif;letter-spacing:.02em;word-spacing:.12em}
 body.s2{font-size:19px}
 body.s3{font-size:22px}
-.display,h1,h2,.p-title,.tt,.score,.rank{font-family:'Abril Fatface',Georgia,serif;font-weight:400}
-body.f-lexend .display,body.f-lexend h2,body.f-lexend .p-title,body.f-lexend .tt,body.f-lexend .score,body.f-lexend .rank{font-family:'Lexend',sans-serif;font-weight:600}
+.display,h1,h2{font-family:'Abril Fatface',Georgia,serif;font-weight:400}
+body.f-lexend .display,body.f-lexend h2,body.f-lexend .p-title,body.f-lexend .tt,body.f-lexend .score{font-family:'Lexend',sans-serif;font-weight:600}
 button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
-a{color:var(--gold)}
-.wrap{max-width:820px;margin:0 auto;padding:18px 16px 40px}
+a{color:var(--velvet)}
+.wrap{max-width:780px;margin:0 auto;padding:16px 14px 48px}
 .hidden{display:none!important}
 .small{font-size:.85em}
 .muted{color:var(--muted)}
 .center{text-align:center}
-.row{display:flex;flex-wrap:wrap;align-items:center}
-.between{display:flex;justify-content:space-between;align-items:center}
-
-/* ---------- icônes ---------- */
-.ic{display:inline-block;width:1.2em;height:1.2em;vertical-align:-.22em;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
-.ic.fill{fill:currentColor}
-.btn .ic,.back .ic{margin-right:7px}
-
-/* ---------- étoiles de maîtrise ---------- */
-.stars{display:inline-flex;align-items:center}
-.stars .sf{width:1.25em;height:1.25em;margin:0 2px;stroke:#d8bf8c;stroke-width:1.6;fill:none;opacity:.55}
-.stars .sf.on{fill:var(--gold);stroke:#fff0c4;opacity:1;filter:drop-shadow(0 0 4px rgba(240,205,128,.55))}
-
-/* ---------- accueil : la scène ---------- */
-.curtain{position:relative;overflow:hidden;isolation:isolate;text-align:center;color:#fff;
-  min-height:340px;padding:46px 16px 34px;border-bottom:5px solid var(--gold-2);
-  background:linear-gradient(rgba(22,14,23,.15),rgba(20,13,21,.55)),url('img/scene.webp') center/cover,url('img/scene.png') center/cover,url('img/scene.jpg') center/cover,
-  radial-gradient(ellipse at 50% 100%,#7b3a33 0,#2a1520 70%)}
-.curtain .valance{position:absolute;left:0;right:0;top:0;height:30px;z-index:2;pointer-events:none;
-  background:radial-gradient(ellipse at 50% 0,#a8203d 0,#a8203d 58%,transparent 60%) 0 0/48px 30px repeat-x,linear-gradient(#5d0d20,#8a1832);
-  border-bottom:3px solid var(--gold-2)}
-.curtain .drape{position:absolute;top:0;bottom:0;width:22%;z-index:1;pointer-events:none;
-  background:repeating-linear-gradient(90deg,#4f0a1d 0,#9a1b36 14px,#6c1128 26px,#b02443 34px,#5c0d22 46px)}
-.curtain .drape.l{left:0;border-radius:0 0 60% 0;box-shadow:8px 0 22px rgba(0,0,0,.5)}
-.curtain .drape.r{right:0;border-radius:0 0 0 60%;box-shadow:-8px 0 22px rgba(0,0,0,.5)}
-.curtain .spot{position:absolute;top:0;width:120px;height:300px;z-index:0;pointer-events:none;opacity:.28;
-  background:linear-gradient(rgba(255,240,190,.9),transparent);-webkit-clip-path:polygon(44% 0,56% 0,100% 100%,0 100%);clip-path:polygon(44% 0,56% 0,100% 100%,0 100%)}
-.curtain .spot.l{left:18%;-webkit-transform:rotate(18deg);transform:rotate(18deg)}
-.curtain .spot.r{right:18%;-webkit-transform:rotate(-18deg);transform:rotate(-18deg)}
-.topbtns{position:absolute;right:max(10px,env(safe-area-inset-right));top:38px;z-index:4}
-.icon-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin-left:6px;padding:0;border-radius:12px;
-  background:rgba(20,12,18,.6);border:1.5px solid rgba(240,205,128,.7);color:#fff}
-.icon-btn .ic{width:22px;height:22px}
-.marquee{position:relative;z-index:3;display:inline-block;max-width:88%;margin-top:58px;padding:18px 30px 14px;border-radius:16px;
-  background:linear-gradient(145deg,#2a1a24,#120d13);border:3px solid var(--gold);box-shadow:0 14px 34px rgba(0,0,0,.6)}
-.marquee:before{content:'';position:absolute;top:-12px;left:-12px;right:-12px;bottom:-12px;border-radius:24px;pointer-events:none;border:5px dotted #ffe7a6;filter:drop-shadow(0 0 4px rgba(255,220,140,.8))}
-.marquee h1{margin:0;font-size:clamp(2.5rem,9vw,4.4rem);line-height:1.02;color:#ffdc91;text-shadow:0 0 16px rgba(240,190,90,.55)}
-.marquee p{margin:6px 0 0;font-weight:800;color:#ffe9c2;font-size:.9em;letter-spacing:.08em}
-.brand{position:relative;z-index:3;margin-top:16px;font-size:.72em;letter-spacing:.3em;color:#ffd9a0;font-weight:800}
-.hero-next{position:relative;z-index:3;display:flex!important;width:min(460px,92%);margin:22px auto 0!important;font-size:1.06em}
-/* ouverture des rideaux (une fois par session) */
-.opening{position:absolute;top:0;left:0;right:0;bottom:0;z-index:6;display:flex;pointer-events:none}
-.opening i{display:block;width:50%;height:100%;background:repeating-linear-gradient(90deg,#540b20 0,#a01c38 16px,#6a1128 30px,#b52646 38px,#5a0c21 50px)}
-.opening i.l{border-right:3px solid var(--gold-2);-webkit-animation:openL 1.3s cubic-bezier(.6,0,.3,1) .15s both;animation:openL 1.3s cubic-bezier(.6,0,.3,1) .15s both}
-.opening i.r{border-left:3px solid var(--gold-2);-webkit-animation:openR 1.3s cubic-bezier(.6,0,.3,1) .15s both;animation:openR 1.3s cubic-bezier(.6,0,.3,1) .15s both}
-@-webkit-keyframes openL{to{-webkit-transform:translateX(-101%)}}@keyframes openL{to{transform:translateX(-101%)}}
-@-webkit-keyframes openR{to{-webkit-transform:translateX(101%)}}@keyframes openR{to{transform:translateX(101%)}}
-
-/* ---------- barres ---------- */
-.topbar{position:-webkit-sticky;position:sticky;top:0;z-index:20;display:flex;align-items:center;min-height:62px;padding:8px 12px;padding-top:max(8px,env(safe-area-inset-top));
-  background:linear-gradient(#2a1d27,#211821);border-bottom:2px solid var(--gold-2);box-shadow:0 4px 14px rgba(0,0,0,.35)}
-.topbar .back{display:inline-flex;align-items:center;min-height:44px;padding:6px 12px;border-radius:12px;font-weight:800;white-space:nowrap;
-  background:rgba(0,0,0,.25);border:1.5px solid rgba(240,205,128,.75);color:#fff}
-.topbar .back .ic{margin-right:4px}
-.topbar .tt{flex:1;text-align:center;font-size:1.25em;margin:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#ffe2a6}
-.topbar .sp{width:84px;flex:none}
-.topbar.tab .tt{text-align:left;margin-left:4px}
-.topbar.tab .sp{display:none}
-.bottom-nav{position:fixed;z-index:30;bottom:0;left:0;right:0;display:flex;justify-content:center;
-  padding:6px max(8px,env(safe-area-inset-right)) calc(6px + env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left));
-  background:rgba(29,22,30,.97);border-top:2px solid var(--gold-d);box-shadow:0 -6px 22px rgba(0,0,0,.45)}
-.nav-tab{flex:1;max-width:170px;min-height:56px;margin:0 2px;border:0;border-radius:14px;background:transparent;color:#cdbcb8;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:12px;font-weight:800}
-.nav-tab .ic{width:24px;height:24px;margin-bottom:3px}
-.nav-tab.active{background:#4a2636;color:#ffdb8b}
-@media (min-width:900px){.bottom-nav{left:50%;right:auto;width:780px;-webkit-transform:translateX(-50%);transform:translateX(-50%);border:2px solid var(--gold-d);border-bottom:0;border-radius:18px 18px 0 0}}
-
+/* ---------- rideau ---------- */
+.curtain{position:relative;background:repeating-linear-gradient(90deg,#6a0e1f 0,#a01a31 22px,#7c1226 44px);color:#fff;text-align:center;padding:44px 14px 30px;overflow:hidden;box-shadow:inset 0 -12px 22px rgba(0,0,0,.35)}
+.curtain:before{content:'';position:absolute;left:0;right:0;top:0;height:30px;background:radial-gradient(circle at 50% 0,#f2c14e 0,#f2c14e 15px,transparent 16px) 0 0/44px 30px repeat-x;pointer-events:none}
+.topbtns{position:absolute;right:10px;top:34px;z-index:2}
+.topbtns .icon-btn{margin-left:6px}
+.icon-btn{display:inline-flex;align-items:center;justify-content:center;background:rgba(0,0,0,.38);border:2px solid rgba(242,193,78,.65);color:#fff;border-radius:12px;width:42px;height:42px;font-size:19px;padding:0}
+.marquee{position:relative;display:inline-block;background:#24140e;border:4px solid var(--gold);border-radius:16px;padding:12px 24px 10px;margin-top:44px;box-shadow:0 10px 26px rgba(0,0,0,.45);max-width:92%}
+.marquee:before{content:'';position:absolute;top:-13px;left:-13px;right:-13px;bottom:-13px;border:5px dotted #ffe7a0;border-radius:24px;animation:blink 1.4s steps(2) infinite;pointer-events:none}
+@keyframes blink{50%{border-color:#f29a3a}}
+.marquee h1{margin:0;font-size:2.3em;line-height:1.05;color:var(--gold);text-shadow:0 0 14px rgba(242,193,78,.55)}
+.marquee p{margin:4px 0 0;font-weight:800;color:#ffe9c2;font-size:.95em}
+.brand{margin-top:18px;font-size:.72em;letter-spacing:.22em;color:#ffd9a0;opacity:.9;font-weight:800}
+/* ---------- barre du haut ---------- */
+.topbar{position:-webkit-sticky;position:sticky;top:0;z-index:5;background:linear-gradient(#7c1226,#5e0d1d);color:#fff;display:flex;align-items:center;padding:10px 12px;box-shadow:0 3px 10px rgba(0,0,0,.25);border-bottom:3px solid var(--gold)}
+.topbar .back{background:rgba(0,0,0,.25);border:2px solid rgba(242,193,78,.75);border-radius:12px;color:#fff;padding:6px 12px;font-weight:800;white-space:nowrap}
+.topbar .tt{flex:1;text-align:center;font-family:'Abril Fatface',Georgia,serif;font-size:1.15em;margin:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar .sp{width:70px}
 /* ---------- éléments ---------- */
-.card{background:var(--panel);border:1px solid #5b4a50;border-radius:20px;padding:16px;margin:0 0 16px;box-shadow:0 10px 28px rgba(0,0,0,.25)}
-h2.sec{display:flex;align-items:center;font-size:1.5em;margin:28px 4px 12px;color:#f3d496}
-h2.sec .ic{width:1.05em;height:1.05em;margin-right:10px;color:var(--gold-2)}
-h3{margin:0 0 8px;color:#f3d496}
-.section-intro{color:#dcc6a8;margin:-4px 4px 14px}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;margin:4px 6px 6px 0;padding:11px 18px;text-align:center;line-height:1.2;font-weight:800;
-  border:1px solid #d0607a;border-bottom:4px solid var(--velvet-d);border-radius:14px;background:var(--velvet);color:#fff;
-  -webkit-transition:-webkit-transform .12s;transition:transform .12s}
-.btn:active{-webkit-transform:translateY(2px);transform:translateY(2px)}
-.btn.gold{background:linear-gradient(135deg,#fbe2a6,#dcae5a);color:#331f10;border-color:#ffefc4;border-bottom-color:var(--gold-d)}
-.btn.ghost{background:#372e37;color:#fff4e7;border-color:#76636b;border-bottom-color:#18121a}
-.btn.ok{background:var(--ok);border-color:#69cfa0;border-bottom-color:var(--ok-d)}
-.btn.bad{background:#a8323e;border-color:#e0808a;border-bottom-color:var(--bad-d)}
-.btn.big{width:100%;margin-right:0;padding:15px;font-size:1.07em}
+.card{background:var(--paper);border-radius:18px;padding:16px;margin:0 0 16px;box-shadow:0 2px 0 #e7d6bb,0 8px 22px rgba(80,40,10,.08);border:1px solid #efe1c8}
+h2.sec{font-size:1.35em;margin:24px 4px 10px;color:var(--velvet-d)}
+h3{margin:0 0 8px;color:var(--velvet-d)}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:none;border-radius:14px;padding:12px 18px;font-weight:800;background:var(--velvet);color:#fff;box-shadow:0 4px 0 var(--velvet-d);margin:4px 6px 6px 0;min-height:48px;text-align:center;line-height:1.2}
+.btn:active{-webkit-transform:translateY(3px);transform:translateY(3px);box-shadow:0 1px 0 var(--velvet-d)}
+.btn.gold{background:var(--gold);color:#3a2000;box-shadow:0 4px 0 var(--gold-d)}
+.btn.ghost{background:#f3e6cf;color:var(--ink);box-shadow:0 4px 0 #dcc7a2}
+.btn.ok{background:var(--ok);box-shadow:0 4px 0 #17603a}
+.btn.bad{background:var(--bad);box-shadow:0 4px 0 #8e2a20}
+.btn.big{width:100%;font-size:1.1em;padding:16px;margin-right:0}
 .btn.half{width:calc(50% - 4px);margin-right:0}
 .btn.half+.btn.half{margin-left:8px}
-.btn.sm{min-height:40px;padding:6px 12px;margin:0}
-.btn.on{background:#c62f3a;border-color:#ff9aa2}
-.btn.stack{flex-direction:column;padding:8px 4px;font-size:.95em}
-.btn.stack .ic{margin:0 0 4px;width:24px;height:24px}
-
-/* ---------- salle de spectacle ---------- */
-.theatre{position:relative;overflow:hidden;padding:18px 16px 0;border:2px solid #ae854a;
-  background:linear-gradient(rgba(36,24,34,.5),rgba(28,19,27,.82)),url('img/salle.webp') center/cover,url('img/salle.png') center/cover,url('img/salle.jpg') center/cover,linear-gradient(#2b1b26,#40242b)}
+.btn.on{background:#d63031}
+.row{display:flex;flex-wrap:wrap;align-items:center}
+.between{display:flex;justify-content:space-between;align-items:center}
+/* ---------- théâtre ---------- */
+.theatre{background:linear-gradient(#2b1711,#3d2016);color:#fff;border:none;overflow:hidden;padding-bottom:0}
+.theatre .muted{color:#d9b99a}
 .th-top{display:flex;justify-content:space-between;align-items:flex-start}
-.rank{font-size:1.6em;color:#ffda8b;line-height:1.15;margin:2px 0}
-.starcount{display:inline-flex;align-items:center;white-space:nowrap;margin-left:8px;padding:6px 14px;border-radius:999px;font-weight:900;font-size:1.1em;background:var(--gold);color:#2a1b14}
-.starcount .ic{margin-right:5px}
-.house{position:relative;margin:16px auto 0;max-width:560px;padding:10px 6px 4px;border-radius:50% 50% 0 0/26px 26px 0 0;
-  background:radial-gradient(ellipse at 50% 0,rgba(255,226,150,.18),transparent 70%)}
-.seats{display:flex;flex-wrap:wrap;justify-content:center}
-.seat{position:relative;width:38px;height:44px;margin:1px}
-.seat svg{display:block;width:100%;height:100%}
-.seat.on .who{-webkit-animation:arrive .5s cubic-bezier(.3,1.4,.5,1) both;animation:arrive .5s cubic-bezier(.3,1.4,.5,1) both}
-@-webkit-keyframes arrive{from{-webkit-transform:translateY(-18px) scale(.6);opacity:0}}
-@keyframes arrive{from{transform:translateY(-18px) scale(.6);opacity:0}}
-.stage-floor{height:22px;margin:14px -16px 0;border-top:4px solid var(--gold-2);background:repeating-linear-gradient(90deg,#65412b 0,#815334 38px,#5c3529 76px)}
-.house-legend{text-align:center;font-size:.8em;color:#dcc6a8;margin-top:6px}
-
+.rank{font-size:1.5em;color:var(--gold);line-height:1.15;margin:2px 0}
+.starcount{background:var(--gold);color:#3a2000;font-weight:900;border-radius:999px;padding:6px 14px;font-size:1.1em;white-space:nowrap;margin-left:8px}
+.seats{display:flex;flex-wrap:wrap;justify-content:center;max-width:362px;margin:14px auto 0}
+.seat{width:29px;height:29px;margin:3px;border-radius:9px 9px 4px 4px;background:#6f1022;box-shadow:inset 0 -6px 0 #4a0814;display:flex;align-items:center;justify-content:center;font-size:18px;line-height:1}
+.seat.on{background:#a01a31;-webkit-animation:pop .5s ease both;animation:pop .5s ease both}
+.stage-floor{height:20px;margin:14px -16px 0;background:repeating-linear-gradient(90deg,#7a4a2a 0,#8d5a34 40px,#6b3e22 80px);border-top:4px solid var(--gold)}
 /* ---------- à l'affiche ce soir ---------- */
-.todo{display:flex;align-items:center;width:100%;min-height:76px;margin:0 0 10px;padding:12px 14px;text-align:left;border-radius:16px;
-  background:#2a222c;color:#fff2df;border:1px solid #6c5358;border-left:7px solid var(--pc,#d7ad68)}
-.todo .ti{display:flex;align-items:center;justify-content:center;flex:none;width:44px;height:44px;margin-right:12px;border-radius:12px;background:var(--pc,#7b2038);color:#fff}
-.todo .ti .ic{width:24px;height:24px}
+.todo{display:flex;align-items:center;background:var(--paper);border-radius:16px;padding:12px;margin:0 0 10px;border:none;border-left:8px solid var(--pc,#a8182e);box-shadow:0 2px 8px rgba(80,40,10,.1);width:100%;text-align:left}
+.todo .ic{font-size:1.6em;margin-right:12px}
 .todo .tx{flex:1;min-width:0}
 .todo .tx b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.todo .go{display:inline-flex;align-items:center;margin-left:8px;font-weight:900;color:#f1d08c;white-space:nowrap}
-.todo .stars{font-size:.9em}
-.relache{text-align:center;padding:20px;color:#eee0c9}
-.relache .ic{width:34px;height:34px;color:var(--gold);display:block;margin:0 auto 6px}
-
+.todo .go{font-weight:900;color:var(--velvet);margin-left:8px;white-space:nowrap}
+.relache{text-align:center;padding:18px;color:var(--muted)}
 /* ---------- affiches ---------- */
-.posters{display:flex;flex-wrap:wrap;margin:0 -7px}
-.poster{position:relative;width:calc(50% - 14px);min-height:236px;margin:7px;padding:22px 12px 16px;border-radius:9px;color:#fff;text-align:center;
-  display:flex;flex-direction:column;align-items:center;justify-content:space-between;
-  background:linear-gradient(160deg,rgba(18,12,23,.45),rgba(0,0,0,.25)),url('img/affiche.webp') center/cover,url('img/affiche.png') center/cover,linear-gradient(150deg,var(--pc,#7b2038),#1a101a 110%);
-  border:2px solid #caa15b;box-shadow:0 8px 0 #110d13,0 12px 24px rgba(0,0,0,.45)}
-.poster:before{content:'';position:absolute;top:8px;left:8px;right:8px;bottom:8px;border:1px solid rgba(232,203,145,.8);border-radius:5px;pointer-events:none}
-.poster:active{-webkit-transform:translateY(2px);transform:translateY(2px)}
-@media (min-width:650px){.poster{width:calc(33.333% - 14px)}}
-.p-kind{display:inline-flex;align-items:center;font-size:.7em;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#ffe1a4}
-.p-kind .ic{margin-right:5px}
-.p-title{display:block;font-size:1.35em;line-height:1.12;margin:8px 0 4px;word-break:break-word;text-shadow:0 2px 6px rgba(0,0,0,.6)}
-.p-author{font-style:italic;font-size:.85em;color:#fff1df}
-.p-stars{margin-top:8px}
-.p-due{margin-top:8px;padding:2px 10px;border-radius:999px;font-size:.78em;font-weight:800;background:rgba(20,14,20,.85);color:#fff1da}
-.p-due.soon{background:var(--gold);color:#241821}
-.poster.new{background:#2c232b;border:2px dashed #bb9257;box-shadow:none;color:#f5d48b;justify-content:center;font-weight:900}
+.posters{display:flex;flex-wrap:wrap;margin:0 -6px}
+.poster{position:relative;width:calc(50% - 12px);margin:6px;min-height:196px;border:none;border-radius:10px;padding:16px 12px 14px;background-color:var(--pc,#a8182e);background-image:linear-gradient(rgba(255,255,255,.1),rgba(0,0,0,.2));color:#fff;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:space-between;box-shadow:0 6px 0 rgba(0,0,0,.18),0 10px 20px rgba(0,0,0,.15)}
+.poster:before{content:'';position:absolute;top:6px;left:6px;right:6px;bottom:6px;border:2px solid rgba(255,255,255,.55);border-radius:6px;pointer-events:none}
+@media (min-width:620px){.poster{width:calc(33.333% - 12px)}}
+.p-kind{font-size:.7em;font-weight:900;letter-spacing:.12em;text-transform:uppercase;opacity:.92}
+.p-title{font-family:'Abril Fatface',Georgia,serif;font-size:1.25em;line-height:1.15;margin:8px 0 4px;word-break:break-word}
+.p-author{font-style:italic;font-size:.85em;opacity:.92}
+.p-stars{margin-top:8px;font-size:1.05em;letter-spacing:2px}
+.p-due{margin-top:6px;background:rgba(0,0,0,.35);border-radius:999px;padding:2px 10px;font-size:.78em;font-weight:800}
+.p-due.soon{background:var(--gold);color:#3a2000}
+.poster.new{background:transparent;color:var(--velvet);border:3px dashed #d9b98f;box-shadow:none;justify-content:center;font-weight:900}
 .poster.new:before{display:none}
-.poster.new .ic{width:44px;height:44px;margin-bottom:8px}
-.poster.mastered:after{content:'SU PAR CŒUR';position:absolute;top:16px;right:-6px;padding:3px 9px;font-size:.62em;font-weight:900;letter-spacing:.1em;
-  background:var(--gold);color:#2a1b14;border-radius:4px 0 0 4px;box-shadow:0 2px 6px rgba(0,0,0,.4)}
-.poster.big{display:block;width:auto;min-height:0;margin:0 0 14px;padding:26px 16px 22px}
-.poster.big .p-title{font-size:2em}
-.poster.big .p-meta{display:block;font-size:.85em;margin-top:6px;color:#fff1df}
-.poster.big .p-stars{display:block;font-size:1.15em}
-
+.poster.new .plus{font-size:2.6em;line-height:1}
+.poster.big{width:auto;margin:0 0 14px;min-height:0;padding:24px 16px 20px;display:block}
+.poster.big .p-title{font-size:1.7em;display:block}
+.poster.big .p-meta{display:block;font-size:.85em;margin-top:6px;opacity:.92}
 /* ---------- loge ---------- */
 .infos{display:flex;margin:0 -5px 14px}
-.info{flex:1;margin:0 5px;padding:10px 6px;text-align:center;border-radius:14px;background:var(--panel-2);border:1px solid #68535d}
-.info b{display:block;font-size:1.1em;color:#f7d48f}
-.info span{font-size:.75em;color:#ded0c7}
-.veille{background:#231a3d;border-color:#6b58a8}
-.veille h3{display:flex;align-items:center}
-.veille h3 .ic{margin-right:8px;color:#ffd86b}
+.info{flex:1;margin:0 5px;background:var(--paper);border-radius:14px;padding:10px 6px;text-align:center;border:1px solid #efe1c8}
+.info b{display:block;font-size:1.1em;color:var(--velvet)}
+.info span{font-size:.75em;color:var(--muted)}
+.veille{background:#20123a;color:#fff;border:none}
+.veille b{color:#ffd86b}
 .modes{display:flex;flex-wrap:wrap;margin:0 -5px}
-.mode{width:calc(50% - 10px);min-height:132px;margin:5px;padding:14px 12px;text-align:left;border-radius:17px;background:var(--panel-2);color:#fff2e7;border:1px solid #68535d;border-bottom:4px solid #1b151b}
-.mode:active{-webkit-transform:translateY(2px);transform:translateY(2px)}
-.mode .mi{display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:13px;background:#4a2636;color:#ffd98a}
-.mode .mi .ic{width:26px;height:26px}
-.mode b{display:block;margin:8px 0 2px;font-size:1.02em;color:#f7d48f}
-.mode .d{display:block;font-size:.82em;color:#ded0c7}
-.mode.hero{width:calc(100% - 10px);min-height:0;display:flex;align-items:center;background:linear-gradient(135deg,#fbe2a6,#dcae5a);border-color:#ffefc4;border-bottom-color:var(--gold-d)}
-.mode.hero .mi{background:#3a2316;color:#ffd98a;margin-right:14px;flex:none}
-.mode.hero b{color:#331f10;margin-top:0}
-.mode.hero .d{color:#5a3a12}
-.steps .st{display:flex;align-items:flex-start;padding:10px 0;border-bottom:1px dashed #64505a}
+.mode{width:calc(50% - 10px);margin:5px;background:var(--paper);border:2px solid #efdfc3;border-radius:16px;padding:14px 12px;text-align:left;box-shadow:0 4px 0 #e5d2b0}
+.mode:active{-webkit-transform:translateY(3px);transform:translateY(3px);box-shadow:0 1px 0 #e5d2b0}
+.mode .mi{font-size:1.8em;display:block;line-height:1.1}
+.mode b{display:block;font-size:1.02em;margin:5px 0 2px;color:var(--velvet-d)}
+.mode .d{font-size:.82em;color:var(--muted);display:block}
+.mode.hero{width:calc(100% - 10px);background:var(--gold);border-color:var(--gold-d);box-shadow:0 4px 0 var(--gold-d)}
+.mode.hero .d{color:#5a3a00}
+.steps .st{display:flex;align-items:flex-start;padding:9px 0;border-bottom:1px dashed #ead8b8}
 .steps .st:last-child{border-bottom:0}
-.st .s{display:flex;align-items:center;justify-content:center;flex:none;width:40px;height:40px;margin-right:12px;border-radius:50%;background:#3a3039;color:#8f7f86;border:2px solid #5a4a52}
-.st .s .ic{width:22px;height:22px}
-.st.on .s{background:var(--gold);color:#2a1b14;border-color:#fff0c4;box-shadow:0 0 12px rgba(240,205,128,.45)}
+.st .s{font-size:1.5em;margin-right:12px;line-height:1.1;-webkit-filter:grayscale(1);filter:grayscale(1);opacity:.35}
+.st.on .s{-webkit-filter:none;filter:none;opacity:1}
 .st b{display:block}
-.st .tick{display:flex;align-items:center;margin:1px 0 0;font-size:.78em;color:var(--gold)}
-.st .tick .ic{margin-right:4px}
 .hist{list-style:none;padding:0;margin:0}
-.hist li{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed #64505a;font-size:.9em}
+.hist li{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed #ead8b8;font-size:.9em}
 .hist li:last-child{border-bottom:0}
-
-/* ---------- écrans de travail : lisibilité d'abord ---------- */
-.reading-page .card{background:#1e1a22;border-color:#4d4048}
-.reading{font-size:max(20px,1.16em);line-height:1.85;color:#fff8eb;max-width:72ch;margin:0 auto}
-body.sp2 .reading{line-height:2.35}
-.line{padding:6px 10px;border-radius:8px;margin:1px 0}
+/* ---------- textes ---------- */
+.reading{font-size:1.15em;line-height:1.8}
+body.sp2 .reading{line-height:2.3}
+.line{padding:3px 8px;border-radius:8px;margin:1px 0}
 .rl{cursor:pointer}
-.rl.hl{background:#5c4637;color:#fff}
+.rl.hl{background:#ffe9a8}
 .gap{height:.9em}
-.line.new{font-weight:800;background:#584536;color:#fff}
-.line.faded{color:#ab9da0}
-.bar{display:inline-block;height:.8em;border-radius:6px;vertical-align:middle;background:#6d5f67}
+.line.new{font-weight:800;background:#fff1c9}
+.line.faded{color:#a38b78}
+.bar{display:inline-block;height:.85em;background:#e9d9bd;border-radius:6px;vertical-align:middle}
 .w{white-space:nowrap}
-.w.hid{cursor:pointer;color:#e5c78e;letter-spacing:.05em}
+.w.hid{cursor:pointer;color:#b09474;letter-spacing:.05em}
 .w.hid .o{display:none}
 .w.hid.peeked .m{display:none}
 .w.hid.peeked .o{display:inline;color:var(--warn);font-weight:800;letter-spacing:0}
-.qa{margin-bottom:12px;padding:10px 12px;border-radius:12px;background:#2b242d}
-.qa .q{display:flex;align-items:flex-start;font-weight:800;color:#f7d48f}
-.qa .q .ic{margin:.3em 8px 0 0}
+.qa{margin-bottom:12px;padding:10px 12px;border-radius:12px;background:#fff6e2}
+.qa .q{font-weight:800;color:var(--velvet-d)}
 .levels{display:flex;margin:8px -3px 12px}
-.lv{flex:1;margin:0 3px;padding:8px 2px;min-height:48px;border-radius:10px;font-size:.72em;font-weight:800;text-align:center;line-height:1.2;background:#302832;color:#f8eee4;border:2px solid #79616b}
-.lv.on{background:#8b2440;border-color:var(--gold)}
-.progress{height:12px;margin:8px 0;border-radius:999px;overflow:hidden;background:#4d3f46}
-.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),#e9a74a);-webkit-transition:width .3s;transition:width .3s}
-.flash{display:flex;flex-direction:column;justify-content:center;min-height:220px;padding:26px 16px;text-align:center}
-.flash .q{font-size:1.3em;font-weight:900;color:#f7d48f}
-.flash .a{margin-top:16px;padding:12px;font-size:1.1em;border-radius:12px;background:#4b3b39;color:#fff1d5;border:1px solid #a48456}
-.souffleur{display:flex;align-items:center;margin:8px 0;padding:10px 12px;border-radius:12px;font-weight:700;background:#4b3b39;color:#fff1d5;border:1px dashed var(--gold-2)}
-.souffleur .ic{margin-right:8px;color:var(--gold)}
-.speed{display:inline-flex;align-items:center;margin-left:6px;font-size:.85em;font-weight:700;color:var(--muted)}
-.speed input{margin:0 8px}
-
+.lv{flex:1;margin:0 3px;padding:8px 2px;border-radius:10px;border:2px solid #e5d2b0;background:#fff;font-size:.72em;font-weight:800;text-align:center;line-height:1.2}
+.lv.on{background:var(--velvet);color:#fff;border-color:var(--velvet)}
+.progress{height:12px;border-radius:999px;background:#ecdcc0;overflow:hidden;margin:8px 0}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),#f59e0b);transition:width .3s}
+.flash{text-align:center;padding:26px 16px;min-height:180px;display:flex;flex-direction:column;justify-content:center}
+.flash .q{font-size:1.3em;font-weight:900;color:var(--velvet-d)}
+.flash .a{margin-top:16px;font-size:1.1em;background:#fff1c9;border-radius:12px;padding:12px}
+.stickybar{position:-webkit-sticky;position:sticky;bottom:0;z-index:4;background:linear-gradient(rgba(251,243,228,0),var(--cream) 30%);padding:14px 0 10px}
+.souffleur{background:#fff4d6;border:2px dashed var(--gold-d);border-radius:12px;padding:10px 12px;margin:8px 0;font-weight:700}
 /* ---------- formulaires ---------- */
-textarea,input[type=text],input[type=date],select{width:100%;min-height:50px;margin:4px 0 10px;padding:12px;font:inherit;border-radius:12px;background:#17141b;color:var(--cream);border:2px solid #7d6a73;-webkit-appearance:none;appearance:none}
+textarea,input[type=text],input[type=date],select{width:100%;font:inherit;padding:12px;border-radius:12px;border:2px solid #e3cfac;background:#fff;color:var(--ink);margin:4px 0 10px;-webkit-appearance:none;appearance:none}
+input[type=date]{min-height:50px}
 textarea{min-height:200px;line-height:1.6;resize:vertical}
-textarea.short{min-height:76px}
-textarea::placeholder,input::placeholder{color:#a8999f}
-textarea:focus,input:focus,select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(230,194,121,.3)}
-label.f{display:block;margin-top:4px;font-weight:800;font-size:.9em;color:#f0d3a4}
+textarea.short{min-height:70px}
+textarea:focus,input:focus,select:focus{outline:none;border-color:var(--gold-d);box-shadow:0 0 0 3px rgba(242,193,78,.35)}
+label.f{font-weight:800;font-size:.9em;color:var(--velvet-d);display:block;margin-top:4px}
 .seg{display:flex;margin:4px -3px 12px}
-.seg button{flex:1;min-height:50px;margin:0 3px;padding:8px 4px;border-radius:12px;font-weight:800;font-size:.85em;line-height:1.2;background:#342b34;color:#fff;border:2px solid #76636c}
-.seg button .ic{display:block;margin:0 auto 4px;width:22px;height:22px}
-.seg button.on{background:#8d2541;border-color:var(--gold)}
-.cardrow{position:relative;margin-bottom:10px;padding:10px;border-radius:14px;background:#2d262f;border:1px solid #5d4c55}
-.cardrow .del{position:absolute;right:4px;top:2px;min-width:44px;min-height:44px;background:none;border:none;color:#e8a5ab}
-.err{color:#ffaaa9;font-weight:800;margin:6px 0}
-input[type=range]{width:120px;vertical-align:middle;accent-color:var(--gold)}
-hr.sep{border:0;border-top:1px dashed #6a5860;margin:16px 0}
-
+.seg button{flex:1;margin:0 3px;padding:10px 4px;border-radius:12px;border:2px solid #e3cfac;background:#fff;font-weight:800;font-size:.85em;line-height:1.2}
+.seg button.on{background:var(--velvet);border-color:var(--velvet);color:#fff}
+.cardrow{background:#fff6e2;border-radius:14px;padding:10px;margin-bottom:10px;position:relative}
+.cardrow .del{position:absolute;right:8px;top:6px;background:none;border:none;font-size:1.1em}
+.err{color:var(--bad);font-weight:800;margin:6px 0}
+input[type=range]{width:120px;vertical-align:middle}
 /* ---------- résultats ---------- */
-.score{display:flex;align-items:center;justify-content:center;font-size:3.2em;line-height:1;color:#f6d184}
-.score .ic{width:.8em;height:.8em;margin-right:12px}
+.score{font-family:'Abril Fatface',Georgia,serif;font-size:3.2em;color:var(--velvet);text-align:center;line-height:1}
 .verdict{text-align:center;font-weight:900;font-size:1.15em;margin:8px 0 12px}
-.r-ok{color:#8be0b2}
-.r-acc{color:#f6d184;text-decoration:underline}
-.r-miss{color:#ffb1b1;background:#562d39;border-radius:4px;padding:0 2px}
+.r-ok{color:var(--ok)}
+.r-acc{color:var(--warn);text-decoration:underline}
+.r-miss{color:var(--bad);background:#fde2df;border-radius:4px;padding:0 2px}
 .lmark{float:right;margin-left:6px}
-.lmark.ok{color:#8be0b2}.lmark.ko{color:#f6a35c}
 .legend span{margin-right:12px;white-space:nowrap}
-
-/* ---------- récompenses ---------- */
-.reward-grid{display:flex;flex-wrap:wrap;margin:0 -7px}
-.reward-item{width:calc(50% - 14px);margin:7px;padding:18px 10px 14px;text-align:center;border-radius:16px;background:#2c232c;border:1px solid #957047}
-.medal{position:relative;display:flex;align-items:center;justify-content:center;width:88px;height:88px;margin:0 auto 10px;border-radius:50%;border:5px double var(--mc,#e6c37c);color:var(--mc,#f4d68f);background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.18),rgba(0,0,0,.25))}
-.medal .ic{width:40px;height:40px}
-.medal img{position:absolute;top:-6px;left:-6px;width:calc(100% + 12px);height:calc(100% + 12px);object-fit:contain}
-.reward-item.locked .medal{-webkit-filter:grayscale(1);filter:grayscale(1);opacity:.45}
-.reward-item.got{border-color:var(--gold);box-shadow:0 0 18px rgba(240,205,128,.22)}
-.reward-item b{display:block}
-.diag li{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px dashed #64505a;font-size:.9em}
-.diag .y{color:#8be0b2;font-weight:800}.diag .n{color:#ffb1b1;font-weight:800}
-.reward-item .progress{height:8px;margin:8px 6px 2px}
-
-/* ---------- modale, toast, célébrations ---------- */
-.modal{position:fixed;top:0;left:0;right:0;bottom:0;z-index:50;display:flex;align-items:flex-end;justify-content:center;background:rgba(8,7,11,.78)}
-.modal-box{width:100%;max-width:560px;max-height:90vh;overflow:auto;padding:20px 18px calc(26px + env(safe-area-inset-bottom));border-radius:22px 22px 0 0;
-  background:#29212b;border:2px solid #c69b5d;border-bottom:0;color:var(--cream);-webkit-overflow-scrolling:touch;-webkit-animation:up .25s ease;animation:up .25s ease}
-@media (min-width:620px){.modal{align-items:center}.modal-box{border-radius:22px;border-bottom:2px solid #c69b5d}}
+/* ---------- modale & toast ---------- */
+.modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(30,10,5,.6);z-index:50;display:flex;align-items:flex-end;justify-content:center}
+.modal-box{background:var(--paper);width:100%;max-width:560px;max-height:90vh;overflow:auto;border-radius:22px 22px 0 0;padding:20px 18px 28px;-webkit-overflow-scrolling:touch;-webkit-animation:up .25s ease;animation:up .25s ease}
+@media (min-width:620px){.modal{align-items:center}.modal-box{border-radius:22px}}
 @-webkit-keyframes up{from{-webkit-transform:translateY(40px);opacity:0}}
 @keyframes up{from{transform:translateY(40px);opacity:0}}
-.modal h2{display:flex;align-items:center;margin:0 0 10px;color:#f1d08c}
-.modal h2 .ic{margin-right:10px;color:var(--gold-2)}
-.toast{position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom));z-index:60;max-width:90%;padding:12px 18px;border-radius:14px;font-weight:700;text-align:center;
-  background:#3d2934;border:1px solid #d7ac68;color:#fff;visibility:hidden;-webkit-transform:translate(-50%,160px);transform:translate(-50%,160px);-webkit-transition:-webkit-transform .3s;transition:transform .3s}
-.toast.on{visibility:visible;-webkit-transform:translate(-50%,0);transform:translate(-50%,0)}
+.modal h2{margin:0 0 10px;color:var(--velvet-d)}
+.toast{position:fixed;left:50%;bottom:24px;-webkit-transform:translate(-50%,140px);transform:translate(-50%,140px);background:#2a1a14;color:#fff;padding:12px 18px;border-radius:14px;font-weight:700;z-index:60;transition:transform .3s;max-width:90%;text-align:center}
+.toast{visibility:hidden}.toast.on{visibility:visible;-webkit-transform:translate(-50%,0);transform:translate(-50%,0)}
 .celebr{text-align:center}
-.burst{position:relative;width:150px;height:150px;margin:4px auto 6px}
-.burst .rays{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:50%;
-  background:repeating-conic-gradient(rgba(240,205,128,.35) 0 10deg,transparent 10deg 30deg);
-  -webkit-mask:radial-gradient(circle,#000 30%,transparent 70%);mask:radial-gradient(circle,#000 30%,transparent 70%);
-  -webkit-animation:spin 1.6s ease-out both;animation:spin 1.6s ease-out both}
-.burst .big{position:absolute;top:25px;left:25px;width:100px;height:100px;fill:var(--gold);stroke:#fff3cf;stroke-width:1.2;filter:drop-shadow(0 0 14px rgba(240,190,90,.7));
-  -webkit-animation:pop .7s cubic-bezier(.3,1.5,.5,1) both;animation:pop .7s cubic-bezier(.3,1.5,.5,1) both}
-.burst .big.stroke{fill:none;stroke:var(--gold);stroke-width:1.7}
-@-webkit-keyframes spin{from{-webkit-transform:rotate(-90deg) scale(.4);opacity:0}to{-webkit-transform:rotate(0) scale(1);opacity:1}}
-@keyframes spin{from{transform:rotate(-90deg) scale(.4);opacity:0}to{transform:rotate(0) scale(1);opacity:1}}
-@-webkit-keyframes pop{0%{-webkit-transform:scale(0)}100%{-webkit-transform:scale(1)}}
-@keyframes pop{0%{transform:scale(0) rotate(-40deg)}100%{transform:scale(1) rotate(0)}}
-.celebr .what{display:inline-flex;align-items:center;font-weight:900;font-size:1.1em;color:#ffe2a6}
-.celebr .what .ic{margin-right:8px}
-/* grand final : rideau + applaudissements */
-.finale{position:relative;height:200px;margin:-4px -2px 10px;border-radius:16px;overflow:hidden;border:2px solid var(--gold-2);
-  background:radial-gradient(ellipse at 50% 30%,#fff1c2 0,#d9a24a 22%,#3a1d1d 62%,#1a0f14 100%)}
-.finale .who-on{position:absolute;left:50%;bottom:14px;width:64px;height:96px;margin-left:-32px}
-.finale .crown{position:absolute;left:50%;top:22px;width:46px;height:46px;margin-left:-23px;color:#fff3c4;-webkit-animation:pop .6s .9s both;animation:pop .6s .9s both}
-.finale .cl{position:absolute;top:0;bottom:0;width:51%;background:repeating-linear-gradient(90deg,#540b20 0,#a01c38 14px,#6a1128 26px,#b52646 34px,#5a0c21 44px)}
-.finale .cl.l{left:0;-webkit-animation:closeL 1.6s .2s cubic-bezier(.6,0,.3,1) both;animation:closeL 1.6s .2s cubic-bezier(.6,0,.3,1) both}
-.finale .cl.r{right:0;-webkit-animation:closeR 1.6s .2s cubic-bezier(.6,0,.3,1) both;animation:closeR 1.6s .2s cubic-bezier(.6,0,.3,1) both}
-@-webkit-keyframes closeL{0%{-webkit-transform:translateX(0)}35%{-webkit-transform:translateX(-100%)}100%{-webkit-transform:translateX(-100%)}}
-@keyframes closeL{0%{transform:translateX(0)}35%{transform:translateX(-100%)}100%{transform:translateX(-100%)}}
-@-webkit-keyframes closeR{0%{-webkit-transform:translateX(0)}35%{-webkit-transform:translateX(100%)}100%{-webkit-transform:translateX(100%)}}
-@keyframes closeR{0%{transform:translateX(0)}35%{transform:translateX(100%)}100%{transform:translateX(100%)}}
-.clap{position:absolute;bottom:-30px;width:34px;height:34px;color:#ffe2a6;opacity:0;-webkit-animation:clapUp 1.4s ease-out both;animation:clapUp 1.4s ease-out both}
-@-webkit-keyframes clapUp{0%{opacity:0;-webkit-transform:translateY(0) scale(.6)}25%{opacity:1}100%{opacity:0;-webkit-transform:translateY(-190px) scale(1.1)}}
-@keyframes clapUp{0%{opacity:0;transform:translateY(0) scale(.6)}25%{opacity:1}100%{opacity:0;transform:translateY(-190px) scale(1.1)}}
-.confetti{position:fixed;top:-20px;z-index:70;width:10px;height:14px;pointer-events:none;-webkit-animation:fall 1.6s linear forwards;animation:fall 1.6s linear forwards}
+.celebr .bigstar{font-size:5em;display:inline-block;-webkit-animation:pop .7s ease;animation:pop .7s ease}
+@-webkit-keyframes pop{0%{-webkit-transform:scale(0)}70%{-webkit-transform:scale(1.25)}100%{-webkit-transform:scale(1)}}
+@keyframes pop{0%{transform:scale(0) rotate(-120deg)}70%{transform:scale(1.25) rotate(8deg)}100%{transform:scale(1)}}
+.confetti{position:fixed;top:-20px;width:10px;height:14px;z-index:70;-webkit-animation:fall 2.4s linear forwards;animation:fall 2.4s linear forwards;pointer-events:none}
 @-webkit-keyframes fall{to{-webkit-transform:translateY(110vh) rotate(720deg)}}
 @keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
-.tip{background:#2f2531;border:1px solid #987548}
-.tip b{display:flex;align-items:center;color:#f1d49a}
-.tip b .ic{margin-right:8px}
-.codebox{max-height:120px;overflow:auto;padding:10px;font-family:ui-monospace,Menlo,monospace;font-size:.75em;word-break:break-all;border-radius:10px;background:#1b1720;color:#fff;-webkit-user-select:all;user-select:all}
-footer{text-align:center;color:#bfb0ab;font-size:.8em;padding:10px 14px 24px}
-.recdot{display:inline-block;width:12px;height:12px;margin-right:8px;border-radius:50%;background:#ffda86}
-.btn.on .recdot{-webkit-animation:blink 1s steps(2) infinite;animation:blink 1s steps(2) infinite}
-@-webkit-keyframes blink{50%{opacity:.2}}@keyframes blink{50%{opacity:.2}}
+.tip{background:#fff4d6;border:2px dashed var(--gold-d);box-shadow:none}
+.tip b{color:var(--velvet-d)}
+.codebox{font-family:ui-monospace,Menlo,monospace;font-size:.75em;word-break:break-all;background:#f6ecd9;border-radius:10px;padding:10px;max-height:120px;overflow:auto;-webkit-user-select:all;user-select:all}
+footer{text-align:center;color:var(--muted);font-size:.8em;padding:10px 14px 30px}
+.recdot{display:inline-block;width:12px;height:12px;border-radius:50%;background:#fff;margin-right:8px}
+.btn.on .recdot{-webkit-animation:blink 1s steps(2) infinite;animation:blink 1s steps(2) infinite;background:#ffd86b}
 .take{display:flex;align-items:center;margin:8px 0}
 .take span{width:80px;font-weight:800;font-size:.9em}
 .take audio{flex:1;min-width:0}
-@media (prefers-reduced-motion:reduce){*,*:before,*:after{-webkit-animation-duration:.01ms!important;animation-duration:.01ms!important;-webkit-transition-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 </head>
-
 <body>
 <div id="app"></div>
 <div id="modal" class="modal hidden"></div>
@@ -388,96 +232,6 @@ footer{text-align:center;color:#bfb0ab;font-size:.8em;padding:10px 14px 24px}
 (function(){
 'use strict';
 
-/* ---------------- pictogrammes (SVG, trait homogène) ---------------- */
-var ICONS = {
-  home:'<path d="M3 10.5 12 3l9 7.5V21H3z"/><path d="M9.5 21v-6.5h5V21"/>',
-  posters:'<rect x="3" y="3" width="8" height="11" rx="1.5"/><rect x="13" y="3" width="8" height="11" rx="1.5"/><path d="M3 18h18M5 21h14"/>',
-  audience:'<circle cx="12" cy="8" r="3"/><path d="M6 21v-2a6 6 0 0 1 12 0v2"/><circle cx="4.5" cy="10" r="2"/><circle cx="19.5" cy="10" r="2"/><path d="M1.5 19a3.5 3.5 0 0 1 4-3.4M22.5 19a3.5 3.5 0 0 0-4-3.4"/>',
-  trophy:'<path d="M7 4h10v6a5 5 0 0 1-10 0z"/><path d="M7 6H4v2a4 4 0 0 0 4 4M17 6h3v2a4 4 0 0 1-4 4M12 15v3M8 21h8M9 18h6v3H9z"/>',
-  star:'<path d="m12 2.8 2.8 5.8 6.4.9-4.6 4.5 1.1 6.3L12 17.3l-5.7 3 1.1-6.3L2.8 9.5l6.4-.9z"/>',
-  gear:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>',
-  save:'<path d="M5 3h11l4 4v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a1 1 0 0 1 1-1z"/><path d="M8 3v5h7V3M8 21v-7h8v7"/>',
-  help:'<circle cx="12" cy="12" r="9.5"/><path d="M9.3 9.2a2.8 2.8 0 0 1 5.4 1c0 1.9-2.7 2.4-2.7 4.3M12 17.6h.01"/>',
-  play:'<path d="M7 4.5v15l12-7.5z"/>',
-  book:'<path d="M2.5 5c3-1.3 6.2-1.3 9.5.8 3.3-2.1 6.5-2.1 9.5-.8v14c-3-1.3-6.2-1.3-9.5.8-3.3-2.1-6.5-2.1-9.5-.8z"/><path d="M12 5.8v14"/>',
-  mic:'<rect x="9" y="2.5" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3.5M8.5 21.5h7"/>',
-  clapper:'<path d="M3 10h18v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="m3 10 1-5.2a1 1 0 0 1 1.2-.8l15 3-.6 3M8 5l2.3 4.3M13 6l2.3 4.3"/>',
-  quill:'<path d="M20 3C13 4 7.5 9 5.5 17L4 21"/><path d="M20 3c-.5 6-4.5 11.5-12 13.5M9.5 11.5l3.5.5M7.8 14.3l3.2.3"/>',
-  scroll:'<path d="M7 3h11a2 2 0 0 1 2 2v1h-4M7 3a2 2 0 0 0-2 2v13a3 3 0 0 0 3 3h10a2 2 0 0 0 2-2v-1H10v1a2 2 0 0 1-2 2"/><path d="M9 8h6M9 12h6"/>',
-  lesson:'<path d="M4 19V5a2 2 0 0 1 2-2h13v15H6a2 2 0 0 0-2 2 2 2 0 0 0 2 2h13"/><path d="M8 7h7M8 11h5"/>',
-  ladder:'<path d="M7 2v20M17 2v20M7 6h10M7 11h10M7 16h10"/>',
-  eraser:'<path d="m16 3.5 5 5L11 18.5H6l-3-3z"/><path d="M9.5 10 14.5 15M6 18.5h15"/>',
-  cards:'<rect x="7" y="6" width="13" height="15" rx="2"/><path d="M4.5 17.5 3 7.4a2 2 0 0 1 1.7-2.3L14 3.6"/><path d="M11 12h5M11 15.5h3"/>',
-  pencil:'<path d="m4 20 1-4.5L16 4.5a2 2 0 0 1 3 3L8 18.5z"/><path d="m14 6.5 3 3"/>',
-  share:'<circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.6-4.5M8.2 13.2l7.6 4.5"/>',
-  restart:'<path d="M3 12a9 9 0 1 0 2.6-6.4L3 8"/><path d="M3 3v5h5"/>',
-  trash:'<path d="M4 7h16M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1zM6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13M10 11v6M14 11v6"/>',
-  moon:'<path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/>',
-  ticket:'<path d="M3 8a2 2 0 0 0 0 4v4a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-4a2 2 0 0 1 0-4V5a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1z" transform="translate(0 1.5)"/><path d="M14 5.5v2M14 10.5v2M14 15.5v2"/>',
-  mask:'<path d="M3 4c3 1.2 6 1.2 9 0 3 1.2 6 1.2 9 0v6c0 6-4 10-9 10s-9-4-9-10z"/><path d="M7 10.5c.8-.8 2.2-.8 3 0M14 10.5c.8-.8 2.2-.8 3 0M8.5 15c2 1.8 5 1.8 7 0"/>',
-  crown:'<path d="M3 7l4.5 4L12 4l4.5 7L21 7l-2 11H5z"/><path d="M5 21h14"/>',
-  check:'<path d="m4 12.5 5 5L20 6.5"/>',
-  x:'<path d="M6 6l12 12M18 6 6 18"/>',
-  eye:'<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
-  eyeoff:'<path d="M3 3l18 18M10.6 5.1A10.8 10.8 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.2 4M6.6 6.6A16.7 16.7 0 0 0 2 12s3.6 7 10 7a9.8 9.8 0 0 0 5.4-1.6M9.9 9.9a3 3 0 0 0 4.2 4.2"/>',
-  sound:'<path d="M3 9.5v5h4l5 4.5v-14L7 9.5z"/><path d="M16 9a4.5 4.5 0 0 1 0 6M18.8 6.2a8.5 8.5 0 0 1 0 11.6"/>',
-  mute:'<path d="M3 9.5v5h4l5 4.5v-14L7 9.5z"/><path d="m16.5 9.5 5 5M21.5 9.5l-5 5"/>',
-  stop:'<rect x="5.5" y="5.5" width="13" height="13" rx="2"/>',
-  download:'<path d="M12 3v12M7 10.5l5 5 5-5M4 20h16"/>',
-  upload:'<path d="M12 16V4M7 8.5l5-5 5 5M4 20h16"/>',
-  inbox:'<path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5.5 5h13L21 13v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6z"/>',
-  copy:'<rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>',
-  plus:'<path d="M12 5v14M5 12h14"/>',
-  back:'<path d="m15 5-7 7 7 7"/>',
-  next:'<path d="m9 5 7 7-7 7"/>',
-  target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/>',
-  bulb:'<path d="M9 18h6M10 21.5h4M12 2.5a6.5 6.5 0 0 0-4 11.6c.6.5 1 1.3 1 2.1V17h6v-.8c0-.8.4-1.6 1-2.1a6.5 6.5 0 0 0-4-11.6z"/>',
-  warning:'<path d="M12 3 2 20.5h20z"/><path d="M12 10v4.5M12 17.5h.01"/>',
-  half:'<circle cx="12" cy="12" r="9"/><path d="M12 3v18" /><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/>',
-  chart:'<path d="M4 20V4M4 20h17M8.5 16v-4M13 16V8M17.5 16V5"/>',
-  broom:'<path d="M14 3 10 11M6 12h8l2 9H4z"/><path d="M8 16v5M12 16v5"/>',
-  hands:'<path d="M8 13.5 4.6 10a1.4 1.4 0 0 1 2-2l3 3M10 9 6.5 5.4a1.4 1.4 0 0 1 2-2L13 8M11 4.9a1.4 1.4 0 0 1 2-2l5 5a6 6 0 0 1 0 8.5l-1.3 1.3a6 6 0 0 1-8.5 0L3.7 13.3a1.4 1.4 0 0 1 2-2L8 13.5"/><path d="M19 2.5l1-1.5M21.5 5l1.5-.5M17 1.5V0"/>',
-  calendar:'<rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/>'
-};
-function ic(name, cls){ return '<svg class="ic' + (cls ? ' ' + cls : '') + '" viewBox="0 0 24 24" aria-hidden="true">' + (ICONS[name] || ICONS.star) + '</svg>'; }
-function starIc(on){ return '<svg class="sf' + (on ? ' on' : '') + '" viewBox="0 0 24 24" aria-hidden="true">' + ICONS.star + '</svg>'; }
-
-/* ---------------- spectateurs (SVG) ---------------- */
-var PEOPLE = [
-  { skin:'#f1c7a0', hair:'#3b2416', top:'#3d7f88', style:0 },
-  { skin:'#c98f63', hair:'#1d1310', top:'#a96a8a', style:1 },
-  { skin:'#8a5a3b', hair:'#140c0a', top:'#d8a24f', style:2 },
-  { skin:'#f6d6b8', hair:'#c9772f', top:'#5f78b2', style:3 },
-  { skin:'#e2b48c', hair:'#6b3b1d', top:'#6d9a6f', style:4 },
-  { skin:'#a96f4a', hair:'#2b1a12', top:'#c0504f', style:5 }
-];
-function hairPath(st, c){
-  switch (st){
-    case 0: return '<path d="M11 15a9 9 0 0 1 18 0c-2-3-6-4-9-4s-7 1-9 4z" fill="' + c + '"/>';
-    case 1: return '<path d="M10.5 17c0-7 4-10 9.5-10s9.5 3 9.5 10v7h-3v-8c-2-2-11-2-13 0v8h-3z" fill="' + c + '"/>';
-    case 2: return '<circle cx="20" cy="10" r="7" fill="' + c + '"/><circle cx="13" cy="13" r="4" fill="' + c + '"/><circle cx="27" cy="13" r="4" fill="' + c + '"/>';
-    case 3: return '<path d="M11 15c0-5 4-8 9-8s9 3 9 8l-2-1-3 2-4-2-4 2-3-2z" fill="' + c + '"/><circle cx="29" cy="12" r="3" fill="' + c + '"/>';
-    case 4: return '<path d="M11.5 14a8.5 8.5 0 0 1 17 0z" fill="' + c + '"/><rect x="10" y="13" width="20" height="2.4" rx="1.2" fill="' + c + '"/>';
-    default: return '<path d="M11 16c0-6 4-9 9-9s9 3 9 9c-1-2-3-3-5-3-1 1-3 1-4 0-1 1-3 1-4 0-2 0-4 1-5 3z" fill="' + c + '"/>';
-  }
-}
-function seatSvg(i, on){
-  var s = '<svg viewBox="0 0 40 46" aria-hidden="true">' +
-    '<path d="M5 18c0-5 3-8 8-8h14c5 0 8 3 8 8v20H5z" fill="' + (on ? '#7d1830' : '#561829') + '" stroke="#b5686b" stroke-width="1"/>' +
-    '<path d="M9 18c0-3 2-5 5-5h12c3 0 5 2 5 5" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>';
-  if (on){
-    var p = PEOPLE[(i * 7 + Math.floor(i / 6)) % PEOPLE.length];
-    s += '<g class="who" style="-webkit-animation-delay:' + Math.min(.9, i * .04).toFixed(2) + 's;animation-delay:' + Math.min(.9, i * .04).toFixed(2) + 's">' +
-      '<path d="M6 40c0-9 6.3-14 14-14s14 5 14 14z" fill="' + p.top + '"/>' +
-      '<circle cx="20" cy="16" r="8.5" fill="' + p.skin + '"/>' + hairPath(p.style, p.hair) +
-      '<circle cx="17" cy="17" r="1.1" fill="#2a1a14"/><circle cx="23" cy="17" r="1.1" fill="#2a1a14"/>' +
-      '<path d="M17.3 20.3c1.6 1.4 3.8 1.4 5.4 0" stroke="#2a1a14" stroke-width="1.2" fill="none" stroke-linecap="round"/></g>';
-  }
-  s += '<rect x="2" y="37" width="36" height="8" rx="2.5" fill="' + (on ? '#9a2440' : '#4a1424') + '" stroke="#b5686b" stroke-width="1"/>';
-  return s + '</svg>';
-}
-
-
 /* =========================================================
    PAR CŒUR ! — by BROT2YOU
    Appli pour apprendre ses textes par cœur (poèmes, textes, leçons)
@@ -494,17 +248,18 @@ var TIPS = JSON.parse(document.getElementById('data-tips').textContent);
 var LANGS = [['fr','Français','fr-FR'],['en','Anglais','en-GB'],['es','Espagnol','es-ES'],['de','Allemand','de-DE'],['it','Italien','it-IT']];
 var SUBJECTS = ['Français','Anglais','Espagnol','Allemand','Italien','Latin','Histoire-Géo','EMC','SVT','Physique-Chimie','Mathématiques','Technologie','Éducation musicale','Arts plastiques','Autre'];
 var KINDS = {
-  poeme:{label:'Poème',icon:'quill',unit:'vers'},
-  texte:{label:'Texte à réciter',icon:'scroll',unit:'phrases'},
-  lecon:{label:'Leçon',icon:'lesson',unit:'questions'}
+  poeme:{label:'Poème',icon:'🪶',unit:'vers'},
+  texte:{label:'Texte à réciter',icon:'📜',unit:'phrases'},
+  lecon:{label:'Leçon',icon:'📚',unit:'questions'}
 };
 var COLORS = ['#a8182e','#1f5f7a','#5e2d79','#1d7a4a','#b5651d','#2c3e50','#8e2c48','#0f6b63'];
+var FACES = ['😀','🙂','😃','🤩','😊','😄','🥳','😎','🤓','😍'];
 var RANKS = [[0,'Apprenti·e souffleur'],[3,'Figurant·e'],[8,'Second rôle'],[16,'Premier rôle'],[30,"Tête d'affiche"],[50,'Légende de la scène']];
 var STAR_INFO = [
-  ['lu','ticket','La lecture','Lis ou écoute ton texte en entier, en comprenant chaque mot.'],
-  ['repete','mask','Les répétitions','Termine le « Vers par vers » ou l\'effacement jusqu\'aux initiales. Pour une leçon : une série de questions.'],
-  ['generale','clapper','La générale','Récite tout, sans regarder, avec au moins 80 % de réussite.'],
-  ['premiere','crown','La première','Fais au moins 95 % deux jours différents : là, c\'est vraiment su !']
+  ['lu','🎟️','La lecture','Lis ou écoute ton texte en entier, en comprenant chaque mot.'],
+  ['repete','🎭','Les répétitions','Termine le « Vers par vers » ou l\'effacement jusqu\'aux initiales. Pour une leçon : une série de questions.'],
+  ['generale','🎬','La générale','Récite tout, sans regarder, avec au moins 80 % de réussite.'],
+  ['premiere','👑','La première','Fais au moins 95 % deux jours différents : là, c\'est vraiment su !']
 ];
 var LEVELS = ['Texte complet','Quelques trous','Beaucoup de trous','Initiales','Rideau fermé'];
 var THRESH = [0,30,60,101,101];
@@ -536,20 +291,19 @@ function toast(msg){
 }
 
 /* ---------------- état ---------------- */
-function defaults(){ return { v:1, texts:[], settings:{ font:'std', size:1, spacing:1, rate:0.9, sound:1 }, init:false }; }
+function defaults(){ return { v:1, texts:[], settings:{ font:'std', size:1, spacing:1, rate:0.9 }, init:false }; }
 function load(){
   var s = null;
   try { s = JSON.parse(localStorage.getItem(STORE)); } catch(e){ s = null; }
   if (!s || !s.texts) s = defaults();
   if (!s.settings) s.settings = defaults().settings;
-  if (s.settings.sound == null) s.settings.sound = 1;
   return s;
 }
 var S = load();
 var storageOK = true;
 function save(){
   try { localStorage.setItem(STORE, JSON.stringify(S)); }
-  catch(e){ if (storageOK){ storageOK = false; toast('Ce navigateur ne garde pas tes données : pense à la sauvegarde.'); } }
+  catch(e){ if (storageOK){ storageOK = false; toast('⚠️ Ce navigateur ne garde pas tes données : pense à la sauvegarde 💾'); } }
 }
 
 function makeText(o){
@@ -588,7 +342,7 @@ function learnIdx(t){ var r = []; for (var i = 0; i < t.lines.length; i++){ if (
 function countUnits(t){ return t.kind === 'lecon' ? t.cards.length : learnIdx(t).length; }
 function starCount(t){ var n = 0; for (var k in t.stars){ if (t.stars[k]) n++; } return n; }
 function totalStars(){ var n = 0; for (var i = 0; i < S.texts.length; i++) n += starCount(S.texts[i]); return n; }
-function starsStr(t){ var s = '<span class="stars" role="img" aria-label="' + starCount(t) + ' étoile(s) sur 4">'; for (var i = 0; i < STAR_INFO.length; i++) s += starIc(t.stars[STAR_INFO[i][0]]); return s + '</span>'; }
+function starsStr(t){ var s = ''; for (var i = 0; i < STAR_INFO.length; i++) s += t.stars[STAR_INFO[i][0]] ? '★' : '☆'; return s; }
 function rankFor(n){ var cur = RANKS[0][1], next = null; for (var i = 0; i < RANKS.length; i++){ if (n >= RANKS[i][0]) cur = RANKS[i][1]; else { next = RANKS[i]; break; } } return { cur:cur, next:next }; }
 function daysLeft(t){ return t.due ? diffDays(today(), t.due) : null; }
 function dueLabel(t){
@@ -613,7 +367,7 @@ function todoReason(t){
   var d = daysLeft(t);
   if (!t.lastPractice) return 'Première répétition';
   if (d === 0) return "Passage aujourd'hui : dernière répétition !";
-  if (d === 1) return 'Passage demain : mode veille';
+  if (d === 1) return 'Passage demain : mode veille 🌙';
   return 'Répétition prévue' + (d !== null && d > 0 ? ' · passage dans ' + d + ' j' : '');
 }
 function computeNext(t){
@@ -631,7 +385,7 @@ function computeNext(t){
 
 /* ---------------- étoiles & sessions ---------------- */
 var NEWSTARS = [];
-function award(t, key){ if (!t.stars[key]){ t.stars[key] = true; NEWSTARS.push(key + '|' + t.id); } }
+function award(t, key){ if (!t.stars[key]){ t.stars[key] = true; NEWSTARS.push(key); } }
 function practiced(t){
   var td = today();
   t.lastPractice = td;
@@ -652,6 +406,28 @@ function recordSession(t, mode, score){
   t.lastPractice = td;
   t.nextReview = computeNext(t);
   save();
+}
+function flushStars(){
+  if (!NEWSTARS.length) return;
+  var key = NEWSTARS.shift();
+  var info = null;
+  for (var i = 0; i < STAR_INFO.length; i++){ if (STAR_INFO[i][0] === key) info = STAR_INFO[i]; }
+  if (!info) return;
+  confetti();
+  openModal('<div class="celebr"><div class="bigstar">⭐</div><h2>Nouvelle étoile !</h2><p><b>' + info[1] + ' ' + esc(info[2]) + '</b></p><p class="muted">Un nouveau spectateur prend place dans ton théâtre. 👏</p><button class="btn gold big" data-act="closeStar">Merci, merci !</button></div>');
+}
+function confetti(){
+  var cols = ['#f2c14e','#a8182e','#1f5f7a','#1d7a4a','#ffffff','#f59e0b'];
+  for (var i = 0; i < 40; i++){
+    var c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.left = Math.floor(Math.random()*100) + 'vw';
+    c.style.background = cols[i % cols.length];
+    c.style.animationDelay = (Math.random()*0.8).toFixed(2) + 's';
+    c.style.webkitAnimationDelay = c.style.animationDelay;
+    document.body.appendChild(c);
+    (function(el){ setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, 3600); })(c);
+  }
 }
 
 /* ---------------- découpage & comparaison ---------------- */
@@ -797,7 +573,7 @@ function voiceFor(code){
   return best;
 }
 function speak(text, lang, onend){
-  if (!hasTTS){ toast('Lecture audio indisponible sur cet appareil'); return; }
+  if (!hasTTS){ toast('🔇 Lecture audio indisponible sur cet appareil'); return; }
   window.speechSynthesis.cancel();
   var u = new SpeechSynthesisUtterance(text), code = ttsCode(lang), v = voiceFor(code);
   u.lang = code; if (v) u.voice = v; u.rate = S.settings.rate || 0.9;
@@ -828,33 +604,96 @@ function readFrom(t, idx, chain){
 
 /* ---------------- micro : dictée & enregistrement ---------------- */
 var SR = window.SpeechRecognition || window.webkitSpeechRecognition || null;
-var rec = null;
-function stopDictation(){ if (rec){ try { rec.stop(); } catch(e){} rec = null; } }
+var IS_IOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+var IOS_CHROME = IS_IOS && /CriOS|FxiOS|EdgiOS/.test(navigator.userAgent);
+/* état de la dictée : le texte déjà présent + ce qui a été dicté pendant la session */
+var DICT = { rec:null, on:false, base:'', said:'', err:'', restarts:0 };
+function dictSetBtn(on){
+  var b = document.getElementById('dictBtn');
+  if (!b) return;
+  b.className = on ? 'btn on' : 'btn ghost';
+  b.innerHTML = on ? '<span class="recdot"></span>J\'écoute… touche pour arrêter' : '🎙️ Dicter';
+}
+function dictStatus(html){ var s = document.getElementById('dictStatus'); if (s) s.innerHTML = html || ''; }
+function dictJoin(base, said){
+  said = String(said).replace(/^\s+|\s+$/g,'');
+  if (!said) return base;
+  return base + (base && !/\n$/.test(base) ? '\n' : '') + said;
+}
+function dictCommit(){
+  /* fige ce qui a été dit dans la zone de texte */
+  var area = document.getElementById('gen');
+  if (area){ area.value = dictJoin(DICT.base, DICT.said); V.p.draft = area.value; }
+  DICT.base = area ? area.value : dictJoin(DICT.base, DICT.said);
+  DICT.said = '';
+}
+function stopDictation(){
+  if (!DICT.on && !DICT.rec) return;
+  DICT.on = false;
+  if (DICT.rec){ var r = DICT.rec; DICT.rec = null; try { r.stop(); } catch(e){} }
+  dictCommit(); dictSetBtn(false); dictStatus('');
+}
+function dictHelp(kind){
+  var h = '<h2>🎙️ La dictée ne démarre pas</h2>';
+  if (kind === 'none'){
+    h += IOS_CHROME
+      ? '<p>Sur iPhone, <b>Chrome et les autres navigateurs ne savent pas faire la dictée dans une page web</b>. Ouvre l\'appli dans <b>Safari</b>.</p>'
+      : '<p>Ce navigateur ne sait pas transformer ta voix en texte. Utilise <b>Safari</b> (iPhone, iPad, Mac) ou <b>Chrome</b> (Android, ordinateur).</p>';
+  } else if (kind === 'denied'){
+    h += IS_IOS
+      ? '<p>L\'iPhone a refusé le micro. Vérifie :</p><p>1. <b>Réglages › Général › Clavier › Activer la dictée</b> doit être allumé.<br>2. <b>Réglages › Safari › Microphone</b> : choisis « Demander » ou « Autoriser ».<br>3. Recharge la page et touche « Dicter » : accepte quand Safari demande le micro.</p>'
+      : '<p>Le navigateur a refusé le micro. Touche le cadenas à côté de l\'adresse du site, autorise le <b>micro</b>, puis recharge la page.</p>';
+  } else {
+    h += '<p>La reconnaissance vocale n\'a pas pu démarrer (' + esc(kind) + '). Elle a besoin d\'une <b>connexion internet</b>.</p>';
+  }
+  h += '<p class="souffleur">💡 Plan B qui marche toujours : touche la zone de texte, puis le <b>🎤 du clavier</b> de ton téléphone, et récite.</p><button class="btn gold big" data-act="close">OK</button>';
+  openModal(h);
+}
+function startRec(t){
+  var r = new SR();
+  r.lang = ttsCode(t.lang);
+  r.continuous = !IS_IOS;          /* le mode continu est instable sur iPhone : on relance à chaque pause */
+  r.interimResults = true;         /* on affiche le texte en direct, même s'il n'est pas « final » */
+  r.maxAlternatives = 1;
+  r.onresult = function(e){
+    var txt = '';
+    for (var i = 0; i < e.results.length; i++){ txt += (txt ? ' ' : '') + String(e.results[i][0].transcript).replace(/^\s+|\s+$/g,''); }
+    DICT.said = txt; DICT.restarts = 0;
+    var area = document.getElementById('gen');
+    if (area){ area.value = dictJoin(DICT.base, DICT.said); V.p.draft = area.value; area.scrollTop = area.scrollHeight; }
+    dictStatus('<span class="small muted">🎙️ J\'entends : « … ' + esc(txt.split(' ').slice(-6).join(' ')) + ' »</span>');
+  };
+  r.onerror = function(ev){
+    var code = ev && ev.error ? ev.error : 'erreur';
+    if (code === 'no-speech' || code === 'aborted') return;   /* silence : on relancera */
+    DICT.err = code; DICT.on = false;
+    if (code === 'not-allowed' || code === 'service-not-allowed') dictHelp('denied');
+    else if (code === 'network') dictHelp('réseau');
+    else toast('🎙️ Micro : ' + code);
+  };
+  r.onend = function(){
+    if (DICT.rec !== r) return;
+    dictCommit();
+    if (DICT.on && V.name === 'generale' && DICT.restarts < 30){
+      DICT.restarts++;
+      try { DICT.rec = startRec(t); return; } catch(e){}
+    }
+    DICT.rec = null; DICT.on = false; dictSetBtn(false); dictStatus('');
+  };
+  r.start();
+  return r;
+}
 function toggleDictation(t){
-  var btn = document.getElementById('dictBtn'), ta = document.getElementById('gen');
-  if (!SR){ openModal('<h2>' + ic('mic') + 'Dictée indisponible</h2><p>Ce navigateur ne sait pas transformer ta voix en texte. Elle fonctionne avec <b>Chrome, Edge ou Safari</b> (connexion internet nécessaire). Tu peux aussi écrire ton texte, ou utiliser le micro du clavier de ton téléphone.</p><button class="btn gold big" data-act="close">OK</button>'); return; }
-  if (rec){ stopDictation(); if (btn){ btn.className = 'btn ghost'; btn.innerHTML = ic('mic') + 'Dicter'; } return; }
+  if (DICT.on || DICT.rec){ stopDictation(); return; }
+  if (!SR){ dictHelp('none'); return; }
+  var ta = document.getElementById('gen');
+  DICT.base = ta ? ta.value : (V.p.draft || ''); DICT.said = ''; DICT.err = ''; DICT.restarts = 0;
   try {
-    rec = new SR();
-    rec.lang = ttsCode(t.lang); rec.continuous = true; rec.interimResults = false;
-    rec.onresult = function(e){
-      for (var i = e.resultIndex; i < e.results.length; i++){
-        if (e.results[i].isFinal){
-          var txt = String(e.results[i][0].transcript).replace(/^\s+|\s+$/g,'');
-          var area = document.getElementById('gen');
-          if (area && txt){ area.value += (area.value && !/\n$/.test(area.value) ? '\n' : '') + txt; V.p.draft = area.value; }
-        }
-      }
-    };
-    rec.onerror = function(ev){
-      var msg = ev && ev.error === 'not-allowed' ? 'accès au micro refusé (autorise-le dans ton navigateur)' : 'le micro a décroché';
-      toast('Micro : ' + msg);
-    };
-    rec.onend = function(){ rec = null; var b = document.getElementById('dictBtn'); if (b){ b.className = 'btn ghost'; b.innerHTML = ic('mic') + 'Dicter'; } };
-    rec.start();
-    if (btn){ btn.className = 'btn on'; btn.innerHTML = '<span class="recdot"></span>J\'écoute… (stop)'; }
-    if (ta) ta.focus();
-  } catch(e){ rec = null; toast('Micro indisponible ici'); }
+    DICT.on = true;
+    DICT.rec = startRec(t);
+    dictSetBtn(true);
+    dictStatus('<span class="small muted">🎙️ Parle maintenant… (accepte l\'accès au micro si on te le demande)</span>');
+  } catch(e){ DICT.on = false; DICT.rec = null; dictSetBtn(false); dictHelp(String(e && e.name || 'erreur')); }
 }
 var TAKES = {};
 var recorder = null, recStream = null, recStart = 0, recTimer = null;
@@ -862,7 +701,7 @@ function stopRecorder(){ if (recorder && recorder.state !== 'inactive'){ try { r
 function toggleRecord(t){
   if (recorder && recorder.state !== 'inactive'){ stopRecorder(); return; }
   if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof window.MediaRecorder === 'undefined'){
-    openModal('<h2>' + ic('mic') + 'Enregistrement indisponible</h2><p>Ce navigateur (ou cette page) ne donne pas accès au micro. Ouvre l\'appli directement dans Safari ou Chrome. En attendant, tu peux utiliser l\'appli Dictaphone de ton téléphone : le principe est le même !</p><button class="btn gold big" data-act="close">OK</button>');
+    openModal('<h2>⏺️ Enregistrement indisponible</h2><p>Ce navigateur (ou cette page) ne donne pas accès au micro. Ouvre l\'appli directement dans Safari ou Chrome. En attendant, tu peux utiliser l\'appli Dictaphone de ton téléphone : le principe est le même !</p><button class="btn gold big" data-act="close">OK</button>');
     return;
   }
   navigator.mediaDevices.getUserMedia({ audio:true }).then(function(stream){
@@ -889,7 +728,7 @@ function toggleRecord(t){
       bb.innerHTML = '<span class="recdot"></span>Enregistrement… ' + Math.floor(s/60) + ':' + pad(s%60) + ' · stop';
     }, 500);
   })['catch'](function(){
-    openModal('<h2>' + ic('mic') + 'Micro refusé</h2><p>Le navigateur n\'a pas donné accès au micro. Autorise-le dans les réglages du navigateur, ou ouvre l\'appli directement (pas dans un aperçu).</p><button class="btn gold big" data-act="close">OK</button>');
+    openModal('<h2>🎙️ Micro refusé</h2><p>Le navigateur n\'a pas donné accès au micro. Autorise-le dans les réglages du navigateur, ou ouvre l\'appli directement (pas dans un aperçu).</p><button class="btn gold big" data-act="close">OK</button>');
   });
 }
 
@@ -937,9 +776,9 @@ function copyText(txt, okMsg){
 function askImport(d){
   PENDING = d;
   var n = d.kind === 'lecon' ? d.cards.length + ' questions' : learnIdxArr(d.lines) + ' ' + KINDS[d.kind || 'poeme'].unit;
-  openModal('<h2>' + ic('inbox') + 'Un texte pour toi !</h2><div class="poster big" style="--pc:' + COLORS[2] + '"><span class="p-kind">' + ic((KINDS[d.kind] || KINDS.poeme).icon) + esc((KINDS[d.kind] || KINDS.poeme).label) + '</span><span class="p-title">' + esc(d.title) + '</span><span class="p-meta">' + esc(d.author || '') + ' · ' + n + '</span></div>' +
+  openModal('<h2>📥 Un texte pour toi !</h2><div class="poster big" style="--pc:' + COLORS[2] + '"><span class="p-kind">' + (KINDS[d.kind] || KINDS.poeme).icon + ' ' + esc((KINDS[d.kind] || KINDS.poeme).label) + '</span><span class="p-title">' + esc(d.title) + '</span><span class="p-meta">' + esc(d.author || '') + ' · ' + n + '</span></div>' +
     '<label class="f" for="impDue">Date de passage ou de contrôle (facultatif)</label><input type="date" id="impDue">' +
-    '<button class="btn gold big" data-act="doImport">' + ic('plus') + 'Ajouter à mes affiches</button><button class="btn ghost big" data-act="close">Annuler</button>');
+    '<button class="btn gold big" data-act="doImport">Ajouter à mes affiches</button><button class="btn ghost big" data-act="close">Annuler</button>');
 }
 function learnIdxArr(lines){ var n = 0; for (var i = 0; i < lines.length; i++){ if (String(lines[i]).replace(/\s/g,'') !== '') n++; } return n; }
 var PENDING = null;
@@ -954,236 +793,73 @@ function applySettings(){
   if (S.settings.font === 'lexend') c.push('f-lexend');
   if (S.settings.size === 2) c.push('s2'); if (S.settings.size === 3) c.push('s3');
   if (S.settings.spacing === 2) c.push('sp2');
-  if (NAV_VIEWS[V.name]) c.push('has-nav');
   document.body.className = c.join(' ');
-}
-
-/* ---------------- célébrations ---------------- */
-function soundOn(){ return S.settings.sound !== 0; }
-function applause(dur){
-  if (!soundOn()) return;
-  try {
-    var AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
-    if (!applause.ctx) applause.ctx = new AC();
-    var ctx = applause.ctx; if (ctx.state === 'suspended' && ctx.resume) ctx.resume();
-    var sr = ctx.sampleRate, len = Math.floor(sr * dur), buf = ctx.createBuffer(1, len, sr), d = buf.getChannelData(0);
-    var claps = Math.floor(dur * 42);
-    for (var c = 0; c < claps; c++){
-      var st = Math.floor(Math.random() * (len - sr * 0.04)), cl = Math.floor(sr * (0.008 + Math.random() * 0.012));
-      var amp = (0.22 + Math.random() * 0.3) * (1 - (st / len) * 0.7);
-      for (var k = 0; k < cl; k++) d[st + k] += (Math.random() * 2 - 1) * amp * Math.exp(-k / (cl / 4));
-    }
-    var src = ctx.createBufferSource(); src.buffer = buf;
-    var bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 1700; bp.Q.value = 0.6;
-    var g = ctx.createGain(); g.gain.value = 0.55;
-    src.connect(bp); bp.connect(g); g.connect(ctx.destination); src.start(0);
-  } catch(e){}
-}
-function confetti(){
-  var cols = ['#f0cd80','#c8405b','#5f78b2','#3aa877','#fff5e5','#e9a74a'];
-  for (var i = 0; i < 36; i++){
-    var c = document.createElement('div');
-    c.className = 'confetti';
-    c.style.left = Math.floor(Math.random()*100) + 'vw';
-    c.style.background = cols[i % cols.length];
-    c.style.animationDelay = (Math.random()*0.5).toFixed(2) + 's';
-    c.style.webkitAnimationDelay = c.style.animationDelay;
-    document.body.appendChild(c);
-    (function(el){ setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, 2400); })(c);
-  }
-}
-function performerSvg(){
-  var p = PEOPLE[3];
-  return '<svg class="who-on" viewBox="0 0 64 96" aria-hidden="true">' +
-    '<path d="M14 96V62c0-11 8-18 18-18s18 7 18 18v34z" fill="#9a1d38" stroke="#f0cd80" stroke-width="2"/>' +
-    '<path d="M14 60 2 38M50 60l12-22" stroke="' + p.skin + '" stroke-width="7" stroke-linecap="round"/>' +
-    '<circle cx="32" cy="26" r="15" fill="' + p.skin + '"/>' +
-    '<path d="M17 24c0-9 7-14 15-14s15 5 15 14l-4-2-5 3-6-3-6 3-5-3z" fill="' + p.hair + '"/>' +
-    '<path d="M26 26c1-1.5 3-1.5 4 0M34 26c1-1.5 3-1.5 4 0" stroke="#2a1a14" stroke-width="2" fill="none" stroke-linecap="round"/>' +
-    '<path d="M25 32c4 5 10 5 14 0" fill="#7a2a2a"/></svg>';
-}
-function flushStars(){
-  if (!NEWSTARS.length) return;
-  var item = NEWSTARS.shift().split('|'), key = item[0], t = getT(item[1]), info = null;
-  for (var i = 0; i < STAR_INFO.length; i++){ if (STAR_INFO[i][0] === key) info = STAR_INFO[i]; }
-  if (!info) return;
-  if (key === 'premiere'){
-    var claps = '', lefts = [8, 22, 38, 56, 72, 86];
-    for (var j = 0; j < lefts.length; j++) claps += '<span class="clap" style="left:' + lefts[j] + '%;-webkit-animation-delay:' + (0.5 + j * 0.12).toFixed(2) + 's;animation-delay:' + (0.5 + j * 0.12).toFixed(2) + 's">' + ic('hands') + '</span>';
-    openModal('<div class="celebr"><div class="finale">' + performerSvg() + '<span class="crown">' + ic('crown') + '</span>' + claps + '<div class="cl l"></div><div class="cl r"></div></div>' +
-      '<h2 style="justify-content:center">Standing ovation !</h2>' +
-      '<p><b>« ' + esc(t ? t.title : '') + ' »</b> est su par cœur : deux générales parfaites, deux jours différents.</p>' +
-      '<p class="muted small">C\'est la meilleure preuve qu\'un texte est vraiment installé dans ta mémoire. L\'appli te le fera encore réviser de temps en temps pour qu\'il y reste.</p>' +
-      '<button class="btn gold big" data-act="closeStar">' + ic('mask') + 'Saluer le public</button></div>');
-    confetti(); applause(2.2);
-    return;
-  }
-  confetti(); if (key === 'generale') applause(1.4);
-  openModal('<div class="celebr"><div class="burst"><span class="rays"></span><svg class="big" viewBox="0 0 24 24" aria-hidden="true">' + ICONS.star + '</svg></div>' +
-    '<h2 style="justify-content:center">Nouvelle étoile !</h2>' +
-    '<p class="what">' + ic(info[1]) + esc(info[2]) + (t ? ' · ' + esc(t.title) : '') + '</p>' +
-    '<p class="muted">Un nouveau spectateur prend place dans ta salle.</p>' +
-    '<button class="btn gold big" data-act="closeStar">Merci, merci !</button></div>');
 }
 
 /* =========================================================
    VUES
    ========================================================= */
-var TAB_VIEWS = { home:1, texts:1, audience:1, rewards:1 };
-var NAV_VIEWS = { home:1, texts:1, audience:1, rewards:1, loge:1, editor:1 };
-var WORK_VIEWS = { lecture:1, chaine:1, effacement:1, generale:1, lgenerale:1, questions:1, enreg:1 };
-var LASTTAB = 'home';
 var V = { name:'home', p:{} };
-function go(name, p){ stopAll(); if (TAB_VIEWS[name]) LASTTAB = name; V = { name:name, p:p || {} }; render(); try { window.scrollTo(0,0); } catch(e){} }
+function go(name, p){ stopAll(); V = { name:name, p:p || {} }; render(); try { window.scrollTo(0,0); } catch(e){} }
 function stopAll(){ stopSpeak(); stopDictation(); stopRecorder(); }
 function render(){
   var f = VIEWS[V.name] || VIEWS.home;
-  app.innerHTML = f(V.p) + (NAV_VIEWS[V.name] ? navigation() : '');
-  applySettings();
+  app.innerHTML = f(V.p);
   flushStars();
 }
-function navigation(){
-  var tabs = [['home','Accueil','home'],['texts','Mes affiches','posters'],['audience','Ma salle','audience'],['rewards','Palmarès','trophy']];
-  var cur = TAB_VIEWS[V.name] ? V.name : LASTTAB, h = '<nav class="bottom-nav" aria-label="Navigation principale">';
-  for (var i = 0; i < tabs.length; i++){
-    var on = cur === tabs[i][0];
-    h += '<button class="nav-tab' + (on ? ' active' : '') + '" data-act="tab" data-tab="' + tabs[i][0] + '"' + (on ? ' aria-current="page"' : '') + '>' + ic(tabs[i][2]) + '<span>' + tabs[i][1] + '</span></button>';
-  }
-  return h + '</nav>';
-}
-function topbar(title, icon){ return '<div class="topbar"><button class="back" data-act="back">' + ic('back') + 'Retour</button><div class="tt">' + (icon ? ic(icon) + ' ' : '') + esc(title) + '</div><div class="sp"></div></div>'; }
-function tabbar(title){ return '<div class="topbar tab"><div class="tt">' + esc(title) + '</div><button class="icon-btn" data-act="help" aria-label="Aide">' + ic('help') + '</button><button class="icon-btn" data-act="settings" aria-label="Réglages">' + ic('gear') + '</button></div>'; }
-function sec(icon, title){ return '<h2 class="sec">' + ic(icon) + esc(title) + '</h2>'; }
+function topbar(title){ return '<div class="topbar"><button class="back" data-act="back">‹ Retour</button><div class="tt">' + esc(title) + '</div><div class="sp"></div></div>'; }
 function poster(t){
-  var k = KINDS[t.kind];
-  return '<button class="poster' + (t.stars.premiere ? ' mastered' : '') + '" style="--pc:' + COLORS[t.color % COLORS.length] + '" data-act="open" data-id="' + t.id + '">' +
-    '<span class="p-kind">' + ic(k.icon) + esc(k.label) + '</span>' +
+  var k = KINDS[t.kind], d = daysLeft(t);
+  return '<button class="poster" style="--pc:' + COLORS[t.color % COLORS.length] + '" data-act="open" data-id="' + t.id + '">' +
+    '<span class="p-kind">' + k.icon + ' ' + esc(k.label) + '</span>' +
     '<span class="p-title">' + esc(t.title) + '</span>' +
-    '<span class="p-author">' + esc(t.author || t.subject) + '</span>' +
+    (t.author ? '<span class="p-author">' + esc(t.author) + '</span>' : '<span class="p-author">' + esc(t.subject) + '</span>') +
     '<span class="p-stars">' + starsStr(t) + '</span>' +
-    '<span class="p-due' + (needsToday(t) ? ' soon' : '') + '">' + esc(nextLabel(t)) + '</span>' +
+    (t.due ? '<span class="p-due' + (d !== null && d >= 0 && d <= 2 ? ' soon' : '') + '">' + esc(dueLabel(t)) + '</span>' : '') +
     '</button>';
 }
 function seatsHtml(n){
-  var total = Math.max(20, Math.ceil((n + 1) / 10) * 10), h = '<div class="house"><div class="seats" role="img" aria-label="' + n + ' spectateur(s) sur ' + total + ' places">';
-  for (var i = 0; i < total; i++) h += '<span class="seat' + (i < n ? ' on' : '') + '">' + seatSvg(i, i < n) + '</span>';
-  return h + '</div></div>';
-}
-function rankInfo(n){
-  var cur = RANKS[0], next = null;
-  for (var i = 0; i < RANKS.length; i++){ if (n >= RANKS[i][0]) cur = RANKS[i]; else { next = RANKS[i]; break; } }
-  var pct = next ? Math.round((n - cur[0]) / (next[0] - cur[0]) * 100) : 100;
-  return { cur:cur[1], next:next, pct:pct };
-}
-function sortedTexts(){
-  var arr = S.texts.slice();
-  arr.sort(function(a, b){
-    var na = needsToday(a) ? 0 : 1, nb = needsToday(b) ? 0 : 1; if (na !== nb) return na - nb;
-    var da = daysLeft(a), db = daysLeft(b); da = (da === null || da < 0) ? 999 : da; db = (db === null || db < 0) ? 999 : db;
-    if (da !== db) return da - db;
-    var ra = a.nextReview || '0000', rb = b.nextReview || '0000'; return ra < rb ? -1 : ra > rb ? 1 : 0;
-  });
-  return arr;
-}
-function prioritized(){ var a = sortedTexts(); for (var i = 0; i < a.length; i++){ if (needsToday(a[i])) return a[i]; } return null; }
-function theatreCard(stars, big){
-  var rk = rankInfo(stars);
-  return '<section class="card theatre"><div class="th-top"><div><div class="small muted">Ton rôle</div><div class="rank">' + esc(rk.cur) + '</div>' +
-    (rk.next ? '<div class="small muted">Encore ' + (rk.next[0] - stars) + ' étoile(s) pour devenir <b>' + esc(rk.next[1]) + '</b></div>' : '<div class="small muted">Tu as atteint le sommet de l\'affiche !</div>') +
-    '</div><div class="starcount">' + ic('star','fill') + stars + '</div></div>' +
-    (big ? '<div class="progress" style="margin-top:12px"><i style="width:' + rk.pct + '%"></i></div>' : '') +
-    seatsHtml(stars) + '<div class="house-legend">Chaque étoile gagnée fait entrer un spectateur.</div><div class="stage-floor"></div></section>';
+  var total = Math.max(20, Math.ceil((n + 1) / 10) * 10), h = '<div class="seats">';
+  for (var i = 0; i < total; i++){
+    h += '<span class="seat' + (i < n ? ' on' : '') + '"' + (i < n ? ' style="animation-delay:' + (i*0.03).toFixed(2) + 's"' : '') + '>' + (i < n ? FACES[(i*7) % FACES.length] : '') + '</span>';
+  }
+  return h + '</div>';
 }
 
 var VIEWS = {};
 
 /* ---------- accueil ---------- */
 VIEWS.home = function(){
-  var stars = totalStars(), list = [], i, nxt = prioritized(), opening = false;
-  list = sortedTexts().filter(function(t){ return needsToday(t); });
-  try { if (!sessionStorage.getItem('b2y_parcoeur_curtain')){ sessionStorage.setItem('b2y_parcoeur_curtain','1'); opening = true; } } catch(e){}
-  var h = '<header class="curtain"><span class="spot l"></span><span class="spot r"></span><span class="drape l"></span><span class="drape r"></span><span class="valance"></span>' +
-    '<div class="topbtns"><button class="icon-btn" data-act="help" aria-label="Aide">' + ic('help') + '</button>' +
-    '<button class="icon-btn" data-act="backup" aria-label="Sauvegarde">' + ic('save') + '</button>' +
-    '<button class="icon-btn" data-act="settings" aria-label="Réglages">' + ic('gear') + '</button></div>' +
-    '<div class="marquee"><h1>Par Cœur !</h1><p>Poèmes · textes · leçons</p></div><div class="brand">BY BROT2YOU</div>' +
-    '<button class="btn gold hero-next" data-act="nextPractice">' + (nxt ? ic('play','fill') + 'Prochaine répétition : ' + esc(nxt.title) : (S.texts.length ? ic('moon') + 'Relâche : tout est à jour' : ic('plus') + 'Mettre un texte à l\'affiche')) + '</button>' +
-    (opening ? '<div class="opening" aria-hidden="true"><i class="l"></i><i class="r"></i></div>' : '') +
-    '</header><main class="wrap">';
-  h += theatreCard(stars, false);
-  h += sec('clapper', 'Ce soir à l\'affiche');
+  var stars = totalStars(), rk = rankFor(stars), list = [], i;
+  for (i = 0; i < S.texts.length; i++){ if (needsToday(S.texts[i])) list.push(S.texts[i]); }
+  list.sort(function(a, b){ var da = daysLeft(a), db = daysLeft(b); da = da === null ? 999 : da; db = db === null ? 999 : db; return da - db; });
+  var h = '<header class="curtain"><div class="topbtns">' +
+    '<button class="icon-btn" data-act="help" aria-label="Aide">❔</button>' +
+    '<button class="icon-btn" data-act="backup" aria-label="Sauvegarde">💾</button>' +
+    '<button class="icon-btn" data-act="settings" aria-label="Réglages">⚙️</button></div>' +
+    '<div class="marquee"><h1>Par Cœur !</h1><p>Poèmes · textes · leçons</p></div>' +
+    '<div class="brand">BY BROT2YOU</div></header><main class="wrap">';
+  h += '<section class="card theatre"><div class="th-top"><div><div class="small muted">Ton rôle</div><div class="rank display">' + esc(rk.cur) + '</div>' +
+    (rk.next ? '<div class="small muted">Encore ' + (rk.next[0] - stars) + ' ⭐ pour devenir <b>' + esc(rk.next[1]) + '</b></div>' : '<div class="small muted">Tu as atteint le sommet de l\'affiche !</div>') +
+    '</div><div class="starcount">⭐ ' + stars + '</div></div>' + seatsHtml(stars) + '<div class="stage-floor"></div></section>';
+  h += '<h2 class="sec">🎭 Ce soir à l\'affiche</h2>';
   if (!list.length){
-    h += '<div class="card relache">' + ic('moon') + '<b>Relâche !</b><br>Rien à répéter aujourd\'hui. Reviens demain, ou ajoute un nouveau texte.</div>';
+    h += '<div class="card relache">🌙 <b>Relâche !</b><br>Rien à répéter aujourd\'hui. Reviens demain, ou ajoute un nouveau texte.</div>';
   } else {
     for (i = 0; i < list.length; i++){
       var t = list[i];
-      h += '<button class="todo" style="--pc:' + COLORS[t.color % COLORS.length] + '" data-act="open" data-id="' + t.id + '"><span class="ti">' + ic(KINDS[t.kind].icon) + '</span><span class="tx"><b>' + esc(t.title) + '</b><span class="small muted">' + esc(todoReason(t)) + '</span></span><span class="go">Répéter' + ic('next') + '</span></button>';
+      h += '<button class="todo" style="--pc:' + COLORS[t.color % COLORS.length] + '" data-act="open" data-id="' + t.id + '"><span class="ic">' + KINDS[t.kind].icon + '</span><span class="tx"><b>' + esc(t.title) + '</b><span class="small muted">' + esc(todoReason(t)) + '</span></span><span class="go">Répéter ›</span></button>';
     }
   }
-  h += sec('posters', 'Mes affiches') + '<div class="posters">';
-  h += '<button class="poster new" data-act="newText">' + ic('plus') + '<span>Nouveau texte</span><span class="small muted" style="font-weight:600">poème, texte ou leçon</span></button>';
-  var all = sortedTexts();
-  for (i = 0; i < all.length && i < 5; i++) h += poster(all[i]);
+  h += '<h2 class="sec">🖼️ Mes affiches</h2><div class="posters">';
+  h += '<button class="poster new" data-act="newText"><span class="plus">＋</span><span>Nouveau texte</span><span class="small muted" style="font-weight:600">poème, texte ou leçon</span></button>';
+  var sorted = S.texts.slice().sort(function(a, b){ var da = daysLeft(a), db = daysLeft(b); da = (da === null || da < 0) ? 999 : da; db = (db === null || db < 0) ? 999 : db; return da - db; });
+  for (i = 0; i < sorted.length; i++) h += poster(sorted[i]);
   h += '</div>';
-  if (all.length > 5) h += '<button class="btn ghost big" data-act="tab" data-tab="texts">' + ic('posters') + 'Voir mes ' + all.length + ' affiches</button>';
-  h += '<p class="center"><button class="btn ghost" data-act="receive">' + ic('inbox') + 'J\'ai reçu un code de mon prof</button></p>';
-  h += '<section class="card tip"><b>' + ic('bulb') + 'Le conseil du metteur en scène</b><p style="margin:6px 0 0">' + esc(TIPS[Math.floor(Math.random()*TIPS.length)]) + '</p></section>';
-  h += '</main><footer>Par Cœur ! · by BROT2YOU · appli gratuite<br>Tes textes restent sur ton appareil. Pense à la sauvegarde.</footer>';
+  h += '<p class="center"><button class="btn ghost" data-act="receive">📥 J\'ai reçu un code de mon prof</button></p>';
+  h += '<section class="card tip"><b>💬 Le conseil du metteur en scène</b><p style="margin:6px 0 0">' + esc(TIPS[Math.floor(Math.random()*TIPS.length)]) + '</p></section>';
+  h += '</main><footer>Par Cœur ! · by BROT2YOU · appli gratuite<br>Tes textes restent sur ton appareil. Pense à la sauvegarde 💾.</footer>';
   return h;
-};
-
-/* ---------- mes affiches ---------- */
-VIEWS.texts = function(){
-  var arr = sortedTexts(), h = tabbar('Mes affiches') + '<main class="wrap">';
-  h += '<p class="section-intro">Tous tes textes, ceux à répéter aujourd\'hui en premier.</p>';
-  h += '<button class="btn gold big" data-act="newText">' + ic('plus') + 'Mettre un texte à l\'affiche</button><div class="posters" style="margin-top:8px">';
-  for (var i = 0; i < arr.length; i++) h += poster(arr[i]);
-  h += '</div>';
-  if (!arr.length) h += '<div class="card relache">' + ic('posters') + 'Aucune affiche pour l\'instant.</div>';
-  h += '<button class="btn ghost big" data-act="receive" style="margin-top:12px">' + ic('inbox') + 'J\'ai reçu un code de mon prof</button>';
-  return h + '</main>';
-};
-
-/* ---------- ma salle ---------- */
-VIEWS.audience = function(){
-  var n = totalStars(), rk = rankInfo(n), i, h = tabbar('Ma salle') + '<main class="wrap">';
-  h += theatreCard(n, true);
-  h += sec('mask', 'Les rôles');
-  h += '<section class="card steps">';
-  for (i = 0; i < RANKS.length; i++){
-    var got = n >= RANKS[i][0];
-    h += '<div class="st' + (got ? ' on' : '') + '"><span class="s">' + ic(got ? 'check' : 'star') + '</span><div><b>' + esc(RANKS[i][1]) + (RANKS[i][1] === rk.cur ? '<span class="tick">' + ic('mask') + 'ton rôle actuel</span>' : '') + '</b><span class="small muted">' + (RANKS[i][0] === 0 ? 'Le début de l\'aventure' : 'À partir de ' + RANKS[i][0] + ' étoiles') + '</span></div></div>';
-  }
-  h += '</section>' + sec('star', 'Étoiles par spectacle');
-  var arr = sortedTexts();
-  for (i = 0; i < arr.length; i++){
-    var t = arr[i];
-    h += '<button class="todo" style="--pc:' + COLORS[t.color % COLORS.length] + '" data-act="open" data-id="' + t.id + '"><span class="ti">' + ic(KINDS[t.kind].icon) + '</span><span class="tx"><b>' + esc(t.title) + '</b><span class="stars">' + starsStr(t) + '</span></span><span class="go">' + ic('next') + '</span></button>';
-  }
-  return h + '</main>';
-};
-
-/* ---------- palmarès ---------- */
-var TROPHIES = [['Bronze',3,'trophee-bronze.webp','#d9955a','trophy'],['Argent',8,'trophee-argent.webp','#d6dbe2','trophy'],['Or',16,'trophee-or.webp','#f0cd80','trophy'],['Légende',50,'etoile.webp','#ffe7a6','crown']];
-VIEWS.rewards = function(){
-  var n = totalStars(), i, h = tabbar('Palmarès') + '<main class="wrap">', mastered = 0;
-  for (i = 0; i < S.texts.length; i++) if (S.texts[i].stars.premiere) mastered++;
-  h += '<section class="card"><div class="score">' + ic('star','fill') + n + '</div><p class="center" style="margin:6px 0 0">étoile(s) remportée(s) · <b>' + mastered + '</b> texte(s) su(s) par cœur</p></section>';
-  h += sec('trophy', 'Les trophées') + '<div class="reward-grid">';
-  for (i = 0; i < TROPHIES.length; i++){
-    var tr = TROPHIES[i], got = n >= tr[1];
-    h += '<div class="reward-item' + (got ? ' got' : ' locked') + '"><div class="medal" style="--mc:' + tr[3] + '">' + ic(tr[4]) +
-      '<img src="img/' + tr[2] + '" alt="" onerror="b2yImgNext(this)"></div><b>' + tr[0] + '</b>' +
-      '<div class="small muted">' + (got ? 'Débloqué !' : n + ' / ' + tr[1] + ' étoiles') + '</div>' +
-      (got ? '' : '<div class="progress"><i style="width:' + Math.round(n / tr[1] * 100) + '%"></i></div>') + '</div>';
-  }
-  h += '</div>' + sec('star', 'Les quatre étoiles d\'un texte') + '<section class="card steps">';
-  for (i = 0; i < STAR_INFO.length; i++){
-    var cnt = 0;
-    for (var j = 0; j < S.texts.length; j++) if (S.texts[j].stars[STAR_INFO[i][0]]) cnt++;
-    h += '<div class="st' + (cnt ? ' on' : '') + '"><span class="s">' + ic(STAR_INFO[i][1]) + '</span><div><b>' + esc(STAR_INFO[i][2]) + '<span class="tick">' + (cnt ? ic('check') + 'obtenue sur ' + cnt + ' texte(s)' : 'pas encore obtenue') + '</span></b><span class="small muted">' + esc(STAR_INFO[i][3]) + '</span></div></div>';
-  }
-  return h + '</section></main>';
 };
 
 /* ---------- loge (fiche d'un texte) ---------- */
@@ -1191,86 +867,86 @@ VIEWS.loge = function(p){
   var t = getT(p.id); if (!t){ V = { name:'home', p:{} }; return VIEWS.home(); }
   var k = KINDS[t.kind], n = countUnits(t), i;
   var h = topbar(t.title) + '<main class="wrap">';
-  h += '<section class="poster big' + (t.stars.premiere ? ' mastered' : '') + '" style="--pc:' + COLORS[t.color % COLORS.length] + '"><span class="p-kind">' + ic(k.icon) + esc(k.label) + '</span><span class="p-title">' + esc(t.title) + '</span>' +
-    '<span class="p-meta">' + esc([t.author, t.subject, langLabel(t.lang) === t.subject ? '' : langLabel(t.lang)].filter(function(x){ return x; }).join(' · ')) + '</span><span class="p-stars">' + starsStr(t) + '</span></section>';
+  h += '<section class="poster big" style="--pc:' + COLORS[t.color % COLORS.length] + '"><span class="p-kind">' + k.icon + ' ' + esc(k.label) + '</span><span class="p-title">' + esc(t.title) + '</span>' +
+    '<span class="p-meta">' + esc([t.author, t.subject, langLabel(t.lang) === t.subject ? '' : langLabel(t.lang)].filter(function(x){ return x; }).join(' · ')) + '</span><span class="p-stars" style="display:block">' + starsStr(t) + '</span></section>';
   h += '<div class="infos"><div class="info"><b>' + esc(t.due ? dueLabel(t) : '—') + '</b><span>' + (t.due ? 'Passage ' + esc(fmtDate(t.due)) : 'Pas de date') + '</span></div>' +
     '<div class="info"><b>' + esc(nextLabel(t)) + '</b><span>Prochaine répétition</span></div>' +
     '<div class="info"><b>' + n + '</b><span>' + k.unit + '</span></div></div>';
   if (isVeille(t)){
-    h += '<section class="card veille"><h3>' + ic('moon') + 'Veille de contrôle !</h3><p style="margin:0 0 10px">10 minutes ciblées sur ce que tu ne sais pas encore, puis une dernière générale. Et ce soir : au lit tôt, ton cerveau finira le travail.</p><button class="btn gold big" data-act="mode" data-m="veille">' + ic('target') + 'Lancer la veille</button></section>';
+    h += '<section class="card veille"><b>🌙 Veille de contrôle !</b><p style="margin:6px 0 10px">10 minutes ciblées sur ce que tu ne sais pas encore, puis une dernière générale. Et ce soir : au lit tôt, ton cerveau finira le travail.</p><button class="btn gold big" data-act="mode" data-m="veille">Lancer la veille</button></section>';
   }
-  h += sec('clapper', 'Répétitions') + '<div class="modes">';
+  h += '<h2 class="sec">🎬 Répétitions</h2><div class="modes">';
   if (t.kind === 'lecon'){
-    h += modeBtn('lecture','book','Lecture','Lis et écoute la leçon, question par question.');
-    h += modeBtn('effacement','eraser','Effacement','Les réponses disparaissent petit à petit.');
-    h += modeBtn('questions','cards','Questions','Une carte, une question : réponds de tête.');
-    h += modeBtn('enreg','mic','Enregistre-toi','Dis ta leçon et réécoute-toi.');
-    h += modeBtn('lgenerale','clapper','La générale','Toutes les questions, sans aide. Vise 80 % !', true);
+    h += modeBtn('lecture','📖','Lecture','Lis et écoute la leçon, question par question.');
+    h += modeBtn('effacement','🫥','Effacement','Les réponses disparaissent petit à petit.');
+    h += modeBtn('questions','🃏','Questions','Une carte, une question : réponds de tête.');
+    h += modeBtn('enreg','🎙️','Enregistre-toi','Dis ta leçon et réécoute-toi.');
+    h += modeBtn('lgenerale','🎬','La générale','Toutes les questions, sans aide. Vise 80 % !', true);
   } else {
-    h += modeBtn('lecture','book','Lecture','Écoute, lis à voix haute, comprends.');
-    h += modeBtn('chaine','ladder', KINDS[t.kind].unit === 'vers' ? 'Vers par vers' : 'Phrase par phrase','Une ligne, puis deux, puis trois…');
-    h += modeBtn('effacement','eraser','Effacement','Le texte disparaît petit à petit.');
-    h += modeBtn('enreg','mic','Enregistre-toi','Récite et réécoute-toi.');
-    h += modeBtn('generale','clapper','La générale','Récite tout sans regarder. Vise 80 % !', true);
+    h += modeBtn('lecture','📖','Lecture','Écoute, lis à voix haute, comprends.');
+    h += modeBtn('chaine','🪜','Vers par vers','Un vers, puis deux, puis trois…');
+    h += modeBtn('effacement','🫥','Effacement','Le texte disparaît petit à petit.');
+    h += modeBtn('enreg','🎙️','Enregistre-toi','Récite et réécoute-toi.');
+    h += modeBtn('generale','🎬','La générale','Récite tout sans regarder. Vise 80 % !', true);
   }
   h += '</div>';
-  h += sec('star', 'Ton parcours') + '<section class="card steps">';
+  h += '<h2 class="sec">⭐ Ton parcours</h2><section class="card steps">';
   for (i = 0; i < STAR_INFO.length; i++){
     var on = t.stars[STAR_INFO[i][0]];
-    h += '<div class="st' + (on ? ' on' : '') + '"><span class="s">' + ic(STAR_INFO[i][1]) + '</span><div><b>' + esc(STAR_INFO[i][2]) + (on ? '<span class="tick">' + ic('check') + 'obtenue</span>' : '') + '</b><span class="small muted">' + esc(STAR_INFO[i][3]) + '</span></div></div>';
+    h += '<div class="st' + (on ? ' on' : '') + '"><span class="s">' + STAR_INFO[i][1] + '</span><div><b>' + esc(STAR_INFO[i][2]) + (on ? ' ✔️' : '') + '</b><span class="small muted">' + esc(STAR_INFO[i][3]) + '</span></div></div>';
   }
   h += '</section>';
   var gens = [];
   for (i = t.sessions.length - 1; i >= 0 && gens.length < 6; i--){ if (t.sessions[i].m === 'generale' || t.sessions[i].m === 'veille') gens.push(t.sessions[i]); }
   if (gens.length){
-    h += sec('chart', 'Mes générales') + '<section class="card"><ul class="hist">';
+    h += '<h2 class="sec">📈 Mes générales</h2><section class="card"><ul class="hist">';
     for (i = 0; i < gens.length; i++) h += '<li><span>' + esc(fmtDate(gens[i].d)) + (gens[i].m === 'veille' ? ' · veille' : '') + '</span><b>' + gens[i].s + ' %</b></li>';
     h += '</ul></section>';
   }
-  h += sec('gear', 'Coulisses') + '<div class="row">' +
-    '<button class="btn ghost" data-act="edit" data-id="' + t.id + '">' + ic('pencil') + 'Modifier</button>' +
-    '<button class="btn ghost" data-act="share" data-id="' + t.id + '">' + ic('share') + 'Partager</button>' +
-    '<button class="btn ghost" data-act="resetText" data-id="' + t.id + '">' + ic('restart') + 'Repartir de zéro</button>' +
-    '<button class="btn ghost" data-act="delText" data-id="' + t.id + '">' + ic('trash') + 'Supprimer</button></div>';
+  h += '<h2 class="sec">🛠️ Coulisses</h2><div class="row">' +
+    '<button class="btn ghost" data-act="edit" data-id="' + t.id + '">✏️ Modifier</button>' +
+    '<button class="btn ghost" data-act="share" data-id="' + t.id + '">🔗 Partager</button>' +
+    '<button class="btn ghost" data-act="resetText" data-id="' + t.id + '">↺ Repartir de zéro</button>' +
+    '<button class="btn ghost" data-act="delText" data-id="' + t.id + '">🗑️ Supprimer</button></div>';
   return h + '</main>';
 };
-function modeBtn(m, icon, title, desc, hero){
-  return '<button class="mode' + (hero ? ' hero' : '') + '" data-act="mode" data-m="' + m + '"><span class="mi">' + ic(icon) + '</span><span><b>' + esc(title) + '</b><span class="d">' + esc(desc) + '</span></span></button>';
+function modeBtn(m, ic, title, desc, hero){
+  return '<button class="mode' + (hero ? ' hero' : '') + '" data-act="mode" data-m="' + m + '"><span class="mi">' + ic + '</span><b>' + esc(title) + '</b><span class="d">' + esc(desc) + '</span></button>';
 }
 
 /* ---------- lecture ---------- */
 VIEWS.lecture = function(p){
-  var t = getT(p.id), h = topbar('Lecture', 'book') + '<main class="wrap reading-page"><section class="card">', i;
-  h += '<div class="row"><button class="btn gold" data-act="readAll">' + ic('play','fill') + 'Tout écouter</button><button class="btn ghost" data-act="stopRead">' + ic('stop') + 'Stop</button>' +
-    '<label class="speed">Lent<input type="range" id="rate" min="0.6" max="1.2" step="0.1" value="' + (S.settings.rate || 0.9) + '" aria-label="Vitesse de la voix">Rapide</label></div>';
+  var t = getT(p.id), h = topbar('📖 Lecture') + '<main class="wrap"><section class="card">', i;
+  h += '<div class="row"><button class="btn gold" data-act="readAll">▶️ Tout écouter</button><button class="btn ghost" data-act="stopRead">⏹ Stop</button>' +
+    '<label class="small" style="margin-left:4px">🐢 <input type="range" id="rate" min="0.6" max="1.2" step="0.1" value="' + (S.settings.rate || 0.9) + '"> 🐇</label></div>';
   h += '<p class="small muted">Touche une ligne pour l\'entendre seule. Lis à voix haute en même temps, et cherche le sens des mots que tu ne connais pas.</p>';
   h += '<div class="reading">';
   if (t.kind === 'lecon'){
     for (i = 0; i < t.cards.length; i++){
-      h += '<div class="qa"><div class="q line rl" data-act="readLine" data-i="' + (2*i) + '">' + ic('help') + '<span>' + esc(t.cards[i].q) + '</span></div><div class="line rl" data-act="readLine" data-i="' + (2*i+1) + '">' + esc(t.cards[i].a) + '</div></div>';
+      h += '<div class="qa"><div class="q line rl" data-act="readLine" data-i="' + (2*i) + '">❓ ' + esc(t.cards[i].q) + '</div><div class="line rl" data-act="readLine" data-i="' + (2*i+1) + '">' + esc(t.cards[i].a) + '</div></div>';
     }
   } else {
     for (i = 0; i < t.lines.length; i++){
       h += t.lines[i] === '' ? '<div class="gap"></div>' : '<div class="line rl" data-act="readLine" data-i="' + i + '">' + esc(t.lines[i]) + '</div>';
     }
   }
-  h += '</div></section><button class="btn gold big" data-act="readDone">' + ic('check') + 'J\'ai lu tout le texte et je le comprends</button>';
-  if (!hasTTS) h += '<p class="small muted center">La lecture audio n\'est pas disponible sur ce navigateur.</p>';
+  h += '</div></section><button class="btn gold big" data-act="readDone">✅ J\'ai lu tout le texte et je le comprends</button>';
+  if (!hasTTS) h += '<p class="small muted center">🔇 La lecture audio n\'est pas disponible sur ce navigateur.</p>';
   return h + '</main>';
 };
 
 /* ---------- vers par vers ---------- */
 VIEWS.chaine = function(p){
-  var t = getT(p.id), L = learnIdx(t), N = L.length, unitName = KINDS[t.kind].unit === 'vers' ? 'Vers' : 'Phrase';
+  var t = getT(p.id), L = learnIdx(t), N = L.length;
   if (p.k == null) p.k = Math.min(Math.max(1, t.chainPos || 1), N);
   if (!p.ph) p.ph = 'learn';
-  var k = p.k, h = topbar(unitName + ' par ' + unitName.toLowerCase(), 'ladder') + '<main class="wrap reading-page">';
+  var k = p.k, h = topbar('🪜 Vers par vers') + '<main class="wrap">';
   if (p.ph === 'done'){
-    return h + '<section class="card center"><div class="celebr"><div class="burst"><span class="rays"></span><svg class="big" viewBox="0 0 24 24" aria-hidden="true">' + ICONS.mask + '</svg></div></div><h2>Tout le texte enchaîné !</h2><p>Tu as répété les ' + N + ' ' + KINDS[t.kind].unit + ' les uns après les autres. Passe à l\'effacement ou tente directement la générale.</p>' +
-      '<button class="btn gold big" data-act="mode" data-m="generale">' + ic('clapper') + 'Tenter la générale</button><button class="btn ghost big" data-act="mode" data-m="effacement">' + ic('eraser') + 'Passer à l\'effacement</button><button class="btn ghost big" data-act="chain" data-do="restart">' + ic('restart') + 'Recommencer du début</button></section></main>';
+    return h + '<section class="card center"><div class="celebr"><div class="bigstar">🎭</div></div><h2>Tout le texte enchaîné !</h2><p>Tu as répété les ' + N + ' ' + KINDS[t.kind].unit + ' les uns après les autres. Passe à l\'effacement ou tente directement la générale.</p>' +
+      '<button class="btn gold big" data-act="mode" data-m="generale">🎬 Tenter la générale</button><button class="btn ghost big" data-act="mode" data-m="effacement">🫥 Passer à l\'effacement</button><button class="btn ghost big" data-act="chain" data-do="restart">↺ Recommencer du début</button></section></main>';
   }
-  h += '<section class="card"><div class="between"><b>' + unitName + ' ' + k + ' / ' + N + '</b><button class="btn ghost sm" data-act="chain" data-do="listen">' + ic('sound') + 'Écouter</button></div><div class="progress"><i style="width:' + Math.round((k-1)/N*100) + '%"></i></div>';
-  var msg = { learn:'Lis la nouvelle ligne (surlignée) plusieurs fois à voix haute. Les lignes d\'avant ne montrent que leurs initiales.', test:'Maintenant, récite <b>de la première ligne jusqu\'à la nouvelle</b>, à voix haute, sans regarder.', check:'Vérifie : est-ce que tu as tout dit sans erreur ?' }[p.ph];
+  h += '<section class="card"><div class="between"><b>' + (KINDS[t.kind].unit === 'vers' ? 'Vers ' : 'Phrase ') + k + ' / ' + N + '</b><button class="btn ghost" style="min-height:38px;padding:6px 12px" data-act="chain" data-do="listen">🔊 Écouter</button></div><div class="progress"><i style="width:' + Math.round((k-1)/N*100) + '%"></i></div>';
+  var msg = { learn:'Lis la nouvelle ligne (en jaune) plusieurs fois à voix haute. Les lignes d\'avant ne montrent que leurs initiales.', test:'Maintenant, récite <b>de la première ligne jusqu\'à la nouvelle</b>, à voix haute, sans regarder.', check:'Vérifie : est-ce que tu as tout dit sans erreur ?' }[p.ph];
   h += '<p class="small muted">' + msg + '</p><div class="reading">';
   var last = L[k-1];
   for (var i = 0; i <= last; i++){
@@ -1282,10 +958,10 @@ VIEWS.chaine = function(p){
     else h += '<div class="line faded">' + initialsLine(line) + '</div>';
   }
   h += '</div></section>';
-  if (p.ph === 'learn') h += '<button class="btn gold big" data-act="chain" data-do="hide">' + ic('eyeoff') + 'Je cache et je récite</button>';
-  else if (p.ph === 'test') h += '<button class="btn gold big" data-act="chain" data-do="check">' + ic('eye') + 'Vérifier</button>';
-  else h += '<div class="row"><button class="btn ok half" data-act="chain" data-do="ok">' + ic('check') + 'Je l\'avais</button><button class="btn bad half" data-act="chain" data-do="again">' + ic('restart') + 'Pas encore</button></div>';
-  if (k > 1) h += '<p class="center"><button class="btn ghost" data-act="chain" data-do="restart">' + ic('restart') + 'Recommencer du début</button></p>';
+  if (p.ph === 'learn') h += '<button class="btn gold big" data-act="chain" data-do="hide">🙈 Je cache et je récite</button>';
+  else if (p.ph === 'test') h += '<button class="btn gold big" data-act="chain" data-do="check">👀 Vérifier</button>';
+  else h += '<div class="row"><button class="btn ok half" data-act="chain" data-do="ok">✅ Je l\'avais</button><button class="btn bad half" data-act="chain" data-do="again">↺ Pas encore</button></div>';
+  if (k > 1) h += '<p class="center"><button class="btn ghost" data-act="chain" data-do="restart">↺ Recommencer du début</button></p>';
   return h + '</main>';
 };
 
@@ -1294,29 +970,29 @@ VIEWS.effacement = function(p){
   var t = getT(p.id), i;
   if (p.lv == null) p.lv = t.effLevel || 0;
   if (p.souf == null) p.souf = 0;
-  var lv = p.lv, h = topbar('Effacement', 'eraser') + '<main class="wrap reading-page"><section class="card">';
+  var lv = p.lv, h = topbar('🫥 Effacement') + '<main class="wrap"><section class="card">';
   h += '<div class="levels">';
   for (i = 0; i < LEVELS.length; i++) h += '<button class="lv' + (i === lv ? ' on' : '') + '" data-act="setLv" data-lv="' + i + '">' + (i+1) + '<br>' + esc(LEVELS[i]) + '</button>';
   h += '</div><p class="small muted">Récite à voix haute en lisant ce qui reste. Bloqué·e ? <b>Touche un mot caché</b> : le souffleur te le dit. (Souffleur appelé : ' + p.souf + ' fois)</p><div class="reading">';
   if (t.kind === 'lecon'){
-    for (i = 0; i < t.cards.length; i++) h += '<div class="qa"><div class="q">' + ic('help') + '<span>' + esc(t.cards[i].q) + '</span></div><div class="line">' + effaceLine(t.cards[i].a, i + 500, lv) + '</div></div>';
+    for (i = 0; i < t.cards.length; i++) h += '<div class="qa"><div class="q">❓ ' + esc(t.cards[i].q) + '</div><div class="line">' + effaceLine(t.cards[i].a, i + 500, lv) + '</div></div>';
   } else {
     for (i = 0; i < t.lines.length; i++) h += t.lines[i] === '' ? '<div class="gap"></div>' : '<div class="line">' + effaceLine(t.lines[i], i, lv) + '</div>';
   }
   h += '</div></section>';
-  h += '<button class="btn gold big" data-act="effOk">' + ic('check') + (lv < 4 ? 'J\'ai tout récité : niveau suivant' : 'J\'ai tout récité rideau fermé !') + '</button>';
-  if (lv > 0) h += '<button class="btn ghost big" data-act="setLv" data-lv="' + (lv-1) + '">' + ic('back') + 'Revenir au niveau précédent</button>';
+  if (lv < 4) h += '<button class="btn gold big" data-act="effOk">✅ J\'ai tout récité : niveau suivant</button>';
+  else h += '<button class="btn gold big" data-act="effOk">✅ J\'ai tout récité rideau fermé !</button>';
+  if (lv > 0) h += '<button class="btn ghost big" data-act="setLv" data-lv="' + (lv-1) + '">↩ Revenir au niveau précédent</button>';
   return h + '</main>';
 };
 
 /* ---------- générale (poème / texte) ---------- */
-function verdictOf(score){ return score >= 95 ? 'Standing ovation !' : score >= 80 ? 'Bravo, le public applaudit !' : score >= 50 ? 'Pas mal ! Encore quelques répétitions.' : 'Le rideau tombe trop tôt… on répète !'; }
 VIEWS.generale = function(p){
   var t = getT(p.id), L = p.subset && p.subset.length ? p.subset : learnIdx(t), i;
-  var h = topbar(p.subset ? 'Veille ciblée' : 'La générale', p.subset ? 'moon' : 'clapper') + '<main class="wrap reading-page">';
+  var h = topbar(p.subset ? '🌙 Veille ciblée' : '🎬 La générale') + '<main class="wrap">';
   if (p.res){
-    var r = p.res;
-    h += '<section class="card"><div class="score">' + r.score + ' %</div><div class="verdict">' + verdictOf(r.score) + '</div>';
+    var r = p.res, verdict = r.score >= 95 ? 'Standing ovation ! 👏👏👏' : r.score >= 80 ? 'Bravo, le public applaudit ! 👏' : r.score >= 50 ? 'Pas mal ! Encore quelques répétitions.' : 'Le rideau tombe trop tôt… on répète !';
+    h += '<section class="card"><div class="score">' + r.score + ' %</div><div class="verdict">' + verdict + '</div>';
     h += '<p class="small legend center"><span class="r-ok">■ juste</span> <span class="r-acc">■ presque</span> <span class="r-miss">■ oublié</span></p>';
     h += '<div class="reading">';
     var byLine = {};
@@ -1325,7 +1001,7 @@ VIEWS.generale = function(p){
     for (i = 0; i < L.length; i++){
       if (!p.subset && prev >= 0 && L[i] > prev + 1) h += '<div class="gap"></div>';
       var pl = r.perLine[L[i]], good = pl && pl.tot ? pl.ok / pl.tot >= 0.9 : true;
-      h += '<div class="line"><span class="lmark ' + (good ? 'ok' : 'ko') + '" title="' + (good ? 'ligne sue' : 'à retravailler') + '">' + ic(good ? 'check' : 'restart') + '</span>' + (byLine[L[i]] || []).join(' ') + '</div>';
+      h += '<div class="line"><span class="lmark">' + (good ? '✅' : '🔁') + '</span>' + (byLine[L[i]] || []).join(' ') + '</div>';
       prev = L[i];
     }
     h += '</div>';
@@ -1336,8 +1012,8 @@ VIEWS.generale = function(p){
     if (notes.length) h += '<p class="small muted">' + esc(notes.join(' ')) + '</p>';
     h += '</section>';
     var weak = weakLines(t, r);
-    if (weak.length) h += '<button class="btn gold big" data-act="redoWeak">' + ic('target') + 'Retravailler les ' + weak.length + ' ligne(s) ratée(s)</button>';
-    h += '<button class="btn ghost big" data-act="genRestart">' + ic('restart') + 'Refaire la générale</button><button class="btn ghost big" data-act="back">' + ic('back') + 'Retour à la loge</button>';
+    if (weak.length) h += '<button class="btn gold big" data-act="redoWeak">🎯 Retravailler les ' + weak.length + ' ligne(s) ratée(s)</button>';
+    h += '<button class="btn ghost big" data-act="genRestart">↺ Refaire la générale</button><button class="btn ghost big" data-act="back">‹ Retour à la loge</button>';
     return h + '</main>';
   }
   if (p.souf == null) p.souf = 0;
@@ -1348,9 +1024,9 @@ VIEWS.generale = function(p){
     h += '</div>';
   }
   h += '<textarea id="gen" data-bind="draft" placeholder="Écris ta récitation ici…" autocapitalize="sentences" spellcheck="false">' + esc(p.draft || '') + '</textarea>';
-  h += '<div id="souf"></div>';
-  h += '<div class="row"><button class="btn ghost" id="dictBtn" data-act="dictate">' + ic('mic') + 'Dicter</button><button class="btn ghost" data-act="souffleur">' + ic('bulb') + 'Souffleur</button></div></section>';
-  h += '<button class="btn gold big" data-act="genCheck">' + ic('mask') + 'Lever de rideau : je vérifie !</button>';
+  h += '<div id="dictStatus"></div><div id="souf"></div>';
+  h += '<div class="row"><button class="btn ghost" id="dictBtn" data-act="dictate">🎙️ Dicter</button><button class="btn ghost" data-act="souffleur">💡 Souffleur</button></div></section>';
+  h += '<div class="stickybar"><button class="btn gold big" data-act="genCheck">🎭 Lever de rideau : je vérifie !</button></div>';
   return h + '</main>';
 };
 function weakLines(t, r){
@@ -1362,7 +1038,7 @@ function weakLines(t, r){
 
 /* ---------- enregistrement ---------- */
 VIEWS.enreg = function(p){
-  var t = getT(p.id), i, h = topbar('Enregistre-toi', 'mic') + '<main class="wrap reading-page">';
+  var t = getT(p.id), i, h = topbar('🎙️ Enregistre-toi') + '<main class="wrap">';
   var takes = TAKES[t.id] || [];
   h += '<section class="card"><p style="margin-top:0">Récite ton texte comme devant la classe, puis <b>réécoute-toi</b> en suivant le texte : tu entendras tout de suite ce qui manque.</p>';
   h += '<button class="btn big" id="recBtn" data-act="record"><span class="recdot"></span>Enregistrer</button>';
@@ -1371,22 +1047,22 @@ VIEWS.enreg = function(p){
     for (i = takes.length - 1; i >= 0; i--) h += '<div class="take"><span>Prise ' + (i+1) + '<br><small class="muted">' + Math.floor(takes[i].dur/60) + ':' + pad(takes[i].dur%60) + '</small></span><audio controls preload="metadata" src="' + takes[i].url + '"></audio></div>';
   }
   h += '<p class="small muted">Tes prises restent sur cette page et disparaissent quand tu la quittes : rien n\'est envoyé sur internet.</p></section>';
-  h += '<section class="card"><div class="between"><b>Le texte</b><button class="btn ghost sm" data-act="toggleShow">' + (p.show ? ic('eyeoff') + 'Cacher' : ic('eye') + 'Montrer') + '</button></div>';
+  h += '<section class="card"><div class="between"><b>Le texte</b><button class="btn ghost" style="min-height:38px;padding:6px 12px" data-act="toggleShow">' + (p.show ? '🙈 Cacher' : '👀 Montrer') + '</button></div>';
   if (p.show){
     h += '<div class="reading">';
-    if (t.kind === 'lecon'){ for (i = 0; i < t.cards.length; i++) h += '<div class="qa"><div class="q">' + ic('help') + '<span>' + esc(t.cards[i].q) + '</span></div><div>' + esc(t.cards[i].a) + '</div></div>'; }
+    if (t.kind === 'lecon'){ for (i = 0; i < t.cards.length; i++) h += '<div class="qa"><div class="q">❓ ' + esc(t.cards[i].q) + '</div><div>' + esc(t.cards[i].a) + '</div></div>'; }
     else { for (i = 0; i < t.lines.length; i++) h += t.lines[i] === '' ? '<div class="gap"></div>' : '<div class="line">' + esc(t.lines[i]) + '</div>'; }
     h += '</div>';
   } else {
     h += '<p class="small muted">Le texte est caché pendant que tu récites. Montre-le pour vérifier en réécoutant.' + (t.kind === 'lecon' ? '' : ' Premier mot : <b>' + esc(splitWords(t.lines[learnIdx(t)[0]] || '')[0] || '') + '</b>…') + '</p>';
-    if (t.kind === 'lecon'){ h += '<div class="reading">'; for (i = 0; i < t.cards.length; i++) h += '<div class="qa"><div class="q">' + ic('help') + '<span>' + esc(t.cards[i].q) + '</span></div></div>'; h += '</div>'; }
+    if (t.kind === 'lecon'){ h += '<div class="reading">'; for (i = 0; i < t.cards.length; i++) h += '<div class="qa"><div class="q">❓ ' + esc(t.cards[i].q) + '</div></div>'; h += '</div>'; }
   }
   return h + '</section></main>';
 };
 
 /* ---------- questions (leçon) ---------- */
 VIEWS.questions = function(p){
-  var t = getT(p.id), h = topbar('Questions', 'cards') + '<main class="wrap reading-page">';
+  var t = getT(p.id), h = topbar('🃏 Questions') + '<main class="wrap">';
   if (!p.queue){
     var idx = [];
     for (var i = 0; i < t.cards.length; i++) idx.push(i);
@@ -1395,36 +1071,36 @@ VIEWS.questions = function(p){
     p.queue = idx; p.pos = 0; p.shown = false; p.retried = {}; p.res = { ok:0, mid:0, ko:0 };
   }
   if (p.pos >= p.queue.length){
-    return h + '<section class="card center"><div class="celebr"><div class="burst"><span class="rays"></span><svg class="big" viewBox="0 0 24 24" aria-hidden="true">' + ICONS.cards + '</svg></div></div><h2>Série terminée !</h2>' +
-      '<p><b class="r-ok">' + p.res.ok + ' su</b> · <b class="r-acc">' + p.res.mid + ' à moitié</b> · <b style="color:#ffb1b1">' + p.res.ko + ' pas su</b></p><p class="small muted">Les questions ratées reviendront en premier la prochaine fois.</p>' +
-      '<button class="btn gold big" data-act="mode" data-m="lgenerale">' + ic('clapper') + 'Tenter la générale</button><button class="btn ghost big" data-act="mode" data-m="questions">' + ic('restart') + 'Une autre série</button></section></main>';
+    return h + '<section class="card center"><div class="celebr"><div class="bigstar">🃏</div></div><h2>Série terminée !</h2><p>✅ ' + p.res.ok + ' su · 🤏 ' + p.res.mid + ' à moitié · ❌ ' + p.res.ko + ' pas su</p><p class="small muted">Les questions ratées reviendront en premier la prochaine fois.</p>' +
+      '<button class="btn gold big" data-act="mode" data-m="lgenerale">🎬 Tenter la générale</button><button class="btn ghost big" data-act="mode" data-m="questions">↺ Une autre série</button></section></main>';
   }
   var c = t.cards[p.queue[p.pos]];
   h += '<div class="between small muted"><span>Carte ' + (p.pos+1) + ' / ' + p.queue.length + '</span><span>Boîte ' + (c.box || 1) + ' / 5</span></div><div class="progress"><i style="width:' + Math.round(p.pos/p.queue.length*100) + '%"></i></div>';
   h += '<section class="card flash"><div class="q">' + esc(c.q) + '</div>' + (p.shown ? '<div class="a">' + esc(c.a) + '</div>' : '<p class="muted small">Réponds dans ta tête (ou à voix haute) avant de retourner la carte.</p>') + '</section>';
-  if (!p.shown) h += '<button class="btn gold big" data-act="qShow">' + ic('eye') + 'Retourner la carte</button><button class="btn ghost big" data-act="qSpeak">' + ic('sound') + 'Écouter la question</button>';
-  else h += '<div class="row"><button class="btn ok stack" style="flex:1" data-act="qRate" data-r="2">' + ic('check') + 'Su</button><button class="btn ghost stack" style="flex:1" data-act="qRate" data-r="1">' + ic('half') + 'À moitié</button><button class="btn bad stack" style="flex:1;margin-right:0" data-act="qRate" data-r="0">' + ic('x') + 'Pas su</button></div>';
+  if (!p.shown) h += '<button class="btn gold big" data-act="qShow">👀 Retourner la carte</button><button class="btn ghost big" data-act="qSpeak">🔊 Écouter la question</button>';
+  else h += '<div class="row"><button class="btn ok" style="flex:1" data-act="qRate" data-r="2">✅ Su</button><button class="btn ghost" style="flex:1" data-act="qRate" data-r="1">🤏 À moitié</button><button class="btn bad" style="flex:1;margin-right:0" data-act="qRate" data-r="0">❌ Pas su</button></div>';
   return h + '</main>';
 };
 
 /* ---------- générale (leçon) ---------- */
 VIEWS.lgenerale = function(p){
-  var t = getT(p.id), h = topbar(p.subset ? 'Veille ciblée' : 'La générale', p.subset ? 'moon' : 'clapper') + '<main class="wrap reading-page">';
+  var t = getT(p.id), h = topbar(p.subset ? '🌙 Veille ciblée' : '🎬 La générale') + '<main class="wrap">';
   if (!p.list){
     p.list = p.subset && p.subset.length ? p.subset.slice() : (function(){ var a = []; for (var i = 0; i < t.cards.length; i++) a.push(i); return a; })();
     shuffle(p.list); p.pos = 0; p.ok = 0; p.ph = 'ask';
   }
   if (p.pos >= p.list.length){
     var score = Math.round(p.ok / p.list.length * 100);
-    return h + '<section class="card"><div class="score">' + score + ' %</div><div class="verdict">' + verdictOf(score) + '</div><p class="center">' + p.ok + ' question(s) sue(s) sur ' + p.list.length + '.</p></section>' +
-      '<button class="btn gold big" data-act="mode" data-m="questions">' + ic('cards') + 'Retravailler avec les questions</button><button class="btn ghost big" data-act="mode" data-m="lgenerale">' + ic('restart') + 'Refaire la générale</button><button class="btn ghost big" data-act="back">' + ic('back') + 'Retour à la loge</button></main>';
+    var verdict = score >= 95 ? 'Standing ovation ! 👏👏👏' : score >= 80 ? 'Bravo, le public applaudit ! 👏' : score >= 50 ? 'Pas mal ! Encore quelques répétitions.' : 'Le rideau tombe trop tôt… on répète !';
+    return h + '<section class="card"><div class="score">' + score + ' %</div><div class="verdict">' + verdict + '</div><p class="center">' + p.ok + ' question(s) sue(s) sur ' + p.list.length + '.</p></section>' +
+      '<button class="btn gold big" data-act="mode" data-m="questions">🃏 Retravailler avec les questions</button><button class="btn ghost big" data-act="mode" data-m="lgenerale">↺ Refaire la générale</button><button class="btn ghost big" data-act="back">‹ Retour à la loge</button></main>';
   }
   var c = t.cards[p.list[p.pos]];
-  h += '<div class="between small muted"><span>Question ' + (p.pos+1) + ' / ' + p.list.length + '</span><span>' + p.ok + ' sue(s)</span></div><div class="progress"><i style="width:' + Math.round(p.pos/p.list.length*100) + '%"></i></div>';
+  h += '<div class="between small muted"><span>Question ' + (p.pos+1) + ' / ' + p.list.length + '</span><span>✅ ' + p.ok + '</span></div><div class="progress"><i style="width:' + Math.round(p.pos/p.list.length*100) + '%"></i></div>';
   h += '<section class="card"><div class="flash" style="min-height:0;padding:10px 0"><div class="q">' + esc(c.q) + '</div></div>';
   if (p.ph === 'ask'){
     h += '<textarea id="lans" class="short" data-bind="ans" placeholder="Écris ta réponse (facultatif : tu peux aussi répondre dans ta tête)">' + esc(p.ans || '') + '</textarea>';
-    h += '<button class="btn gold big" data-act="lCheck">' + ic('eye') + 'Voir la réponse</button>';
+    h += '<button class="btn gold big" data-act="lCheck">👀 Voir la réponse</button>';
   } else {
     var sug = null;
     if (p.ans && p.ans.replace(/\s/g,'') !== ''){
@@ -1438,7 +1114,7 @@ VIEWS.lgenerale = function(p){
     h += '<p class="small" style="margin-bottom:0">Sois honnête avec toi-même : l\'essentiel y était ?' + (sug === true ? ' <b>On dirait que oui !</b>' : sug === false ? ' <b>Il manque des éléments.</b>' : '') + '</p>';
   }
   h += '</section>';
-  if (p.ph === 'check') h += '<div class="row"><button class="btn ok half" data-act="lRate" data-r="1">' + ic('check') + 'Je savais</button><button class="btn bad half" data-act="lRate" data-r="0">' + ic('x') + 'Je ne savais pas</button></div>';
+  if (p.ph === 'check') h += '<div class="row"><button class="btn ok half" data-act="lRate" data-r="1">✅ Je savais</button><button class="btn bad half" data-act="lRate" data-r="0">❌ Je ne savais pas</button></div>';
   return h + '</main>';
 };
 
@@ -1449,9 +1125,9 @@ VIEWS.editor = function(p){
     p.d = t0 ? { kind:t0.kind, title:t0.title, author:t0.author, subject:t0.subject, lang:t0.lang, due:t0.due, raw: t0.kind === 'lecon' ? '' : joinForEdit(t0), cards: t0.cards.map(function(c){ return { q:c.q, a:c.a }; }) }
              : { kind:'poeme', title:'', author:'', subject:'Français', lang:'fr', due:'', raw:'', cards:[{ q:'', a:'' },{ q:'', a:'' },{ q:'', a:'' }] };
   }
-  var d = p.d, i, h = topbar(p.id ? 'Modifier' : 'Nouveau texte', p.id ? 'pencil' : 'plus') + '<main class="wrap"><section class="card">';
+  var d = p.d, i, h = topbar(p.id ? '✏️ Modifier' : '＋ Nouveau texte') + '<main class="wrap"><section class="card">';
   h += '<label class="f">Que dois-tu apprendre ?</label><div class="seg">';
-  for (var k in KINDS) h += '<button class="' + (d.kind === k ? 'on' : '') + '" data-act="setKind" data-k="' + k + '">' + ic(KINDS[k].icon) + esc(KINDS[k].label) + '</button>';
+  for (var k in KINDS) h += '<button class="' + (d.kind === k ? 'on' : '') + '" data-act="setKind" data-k="' + k + '">' + KINDS[k].icon + '<br>' + esc(KINDS[k].label) + '</button>';
   h += '</div>';
   h += '<label class="f" for="fTitle">Titre *</label><input type="text" id="fTitle" data-bind="d.title" value="' + esc(d.title) + '" placeholder="' + (d.kind === 'lecon' ? 'Ex. : La Révolution française' : 'Ex. : Le Loup et l\'Agneau') + '">';
   h += '<label class="f" for="fAuthor">' + (d.kind === 'lecon' ? 'Chapitre ou source' : 'Auteur ou autrice') + '</label><input type="text" id="fAuthor" data-bind="d.author" value="' + esc(d.author) + '">';
@@ -1463,19 +1139,19 @@ VIEWS.editor = function(p){
   h += '<label class="f" for="fDue">Date de passage ou de contrôle</label><input type="date" id="fDue" data-bind="d.due" value="' + esc(d.due) + '">';
   h += '</section><section class="card">';
   if (d.kind === 'lecon'){
-    h += '<h3>Les questions de ta leçon</h3><p class="small muted" style="margin-top:0">Transforme chaque partie de ta leçon en question, avec sa réponse. C\'est déjà une façon de l\'apprendre !</p>';
+    h += '<h3>📚 Les questions de ta leçon</h3><p class="small muted" style="margin-top:0">Transforme chaque partie de ta leçon en question, avec sa réponse. C\'est déjà une façon de l\'apprendre !</p>';
     for (i = 0; i < d.cards.length; i++){
-      h += '<div class="cardrow"><button class="del" data-act="delCard" data-ci="' + i + '" aria-label="Supprimer la question">' + ic('x') + '</button><label class="f">Question ' + (i+1) + '</label><textarea class="short" data-bind="card" data-ci="' + i + '" data-f="q">' + esc(d.cards[i].q) + '</textarea><label class="f">Réponse</label><textarea class="short" data-bind="card" data-ci="' + i + '" data-f="a">' + esc(d.cards[i].a) + '</textarea></div>';
+      h += '<div class="cardrow"><button class="del" data-act="delCard" data-ci="' + i + '" aria-label="Supprimer">✖️</button><label class="f">Question ' + (i+1) + '</label><textarea class="short" data-bind="card" data-ci="' + i + '" data-f="q">' + esc(d.cards[i].q) + '</textarea><label class="f">Réponse</label><textarea class="short" data-bind="card" data-ci="' + i + '" data-f="a">' + esc(d.cards[i].a) + '</textarea></div>';
     }
-    h += '<button class="btn ghost" data-act="addCard">' + ic('plus') + 'Ajouter une question</button><button class="btn ghost" data-act="toggleBulk">' + ic('copy') + 'Coller en vrac</button>';
+    h += '<button class="btn ghost" data-act="addCard">＋ Ajouter une question</button><button class="btn ghost" data-act="toggleBulk">📋 Coller en vrac</button>';
     if (p.bulk){
       h += '<p class="small muted">Une question par ligne, puis <b>|</b> puis la réponse. Exemple :<br><i>Date de la prise de la Bastille ? | Le 14 juillet 1789</i><br>Si tu oublies le |, tout ce qui suit le « ? » devient la réponse.</p><textarea id="bulk" class="short" style="min-height:120px"></textarea><button class="btn gold" data-act="bulkAdd">Ajouter ces lignes</button>';
     }
   } else {
-    h += '<h3>' + (d.kind === 'poeme' ? 'Ton poème' : 'Ton texte') + '</h3><p class="small muted" style="margin-top:0">' + (d.kind === 'poeme' ? 'Copie-le ou colle-le. <b>Un vers par ligne</b>, et une ligne vide entre deux strophes.' : 'Colle ton texte : il sera découpé en phrases. Laisse une ligne vide entre deux paragraphes.') + '</p>';
+    h += '<h3>' + (d.kind === 'poeme' ? '🪶 Ton poème' : '📜 Ton texte') + '</h3><p class="small muted" style="margin-top:0">' + (d.kind === 'poeme' ? 'Copie-le ou colle-le. <b>Un vers par ligne</b>, et une ligne vide entre deux strophes.' : 'Colle ton texte : il sera découpé en phrases. Laisse une ligne vide entre deux paragraphes.') + '</p>';
     h += '<textarea id="fRaw" data-bind="d.raw" placeholder="Colle ton texte ici…">' + esc(d.raw) + '</textarea><p class="small muted" id="preview">' + previewTxt(d) + '</p>';
   }
-  h += '</section><div class="err" id="err"></div><button class="btn gold big" data-act="saveText">' + ic('mask') + (p.id ? 'Enregistrer les modifications' : 'Mettre à l\'affiche') + '</button>';
+  h += '</section><div class="err" id="err"></div><button class="btn gold big" data-act="saveText">🎭 ' + (p.id ? 'Enregistrer les modifications' : 'Mettre à l\'affiche') + '</button>';
   return h + '</main>';
 };
 function previewTxt(d){
@@ -1493,9 +1169,9 @@ function previewTxt(d){
 var ACT = {};
 function curT(){ return getT(V.p.id); }
 ACT.back = function(){
-  if (TAB_VIEWS[V.name]) return;
-  if (V.name === 'loge' || (V.name === 'editor' && !V.p.id)) go(LASTTAB);
+  if (V.name === 'loge' || (V.name === 'editor' && !V.p.id)) go('home');
   else if (V.name === 'editor') go('loge', { id:V.p.id });
+  else if (V.name === 'home') return;
   else go('loge', { id:V.p.id });
 };
 ACT.open = function(el){ go('loge', { id: el.getAttribute('data-id') }); };
@@ -1521,7 +1197,7 @@ ACT.mode = function(el){
 ACT.readAll = function(){ var t = curT(); readFrom(t, 0, true); };
 ACT.stopRead = function(){ stopSpeak(); };
 ACT.readLine = function(el){ var t = curT(); readTok++; var i = +el.getAttribute('data-i'); clearHL(); el.className += ' hl'; var tok = readTok; speak(readItems(t)[i], t.lang, function(){ if (tok === readTok) clearHL(); }); };
-ACT.readDone = function(){ var t = curT(); award(t, 'lu'); practiced(t); save(); toast('Lecture validée !'); go('loge', { id:t.id }); };
+ACT.readDone = function(){ var t = curT(); award(t, 'lu'); practiced(t); save(); toast('🎟️ Lecture validée !'); go('loge', { id:t.id }); };
 /* vers par vers */
 ACT.chain = function(el){
   var t = curT(), d = el.getAttribute('data-do'), N = learnIdx(t).length, p = V.p;
@@ -1551,7 +1227,7 @@ ACT.effOk = function(){
   else {
     t.effLevel = 4; save();
     if (NEWSTARS.length) flushStars();
-    else openModal('<h2>' + ic('mask') + 'Rideau fermé… et tu sais tout !</h2><p>Il est temps de passer à <b>la générale</b> pour le prouver.</p><button class="btn gold big" data-act="mode" data-m="' + (t.kind === 'lecon' ? 'lgenerale' : 'generale') + '">' + ic('clapper') + 'Tenter la générale</button><button class="btn ghost big" data-act="close">Plus tard</button>');
+    else openModal('<h2>🎭 Rideau fermé… et tu sais tout !</h2><p>Il est temps de passer à <b>la générale</b> pour le prouver.</p><button class="btn gold big" data-act="mode" data-m="' + (t.kind === 'lecon' ? 'lgenerale' : 'generale') + '">🎬 Tenter la générale</button><button class="btn ghost big" data-act="close">Plus tard</button>');
   }
 };
 /* générale */
@@ -1561,15 +1237,15 @@ ACT.souffleur = function(){
   var ta = document.getElementById('gen'), typed = ta ? ta.value : '';
   var n = typed.split('\n').filter(function(l){ return l.replace(/\s/g,'') !== ''; }).length;
   var box = document.getElementById('souf');
-  if (n >= L.length){ if (box) box.innerHTML = '<div class="souffleur">' + ic('bulb') + 'Tu as déjà écrit autant de lignes que le texte en compte !</div>'; return; }
+  if (n >= L.length){ if (box) box.innerHTML = '<div class="souffleur">💡 Tu as déjà écrit autant de lignes que le texte en compte !</div>'; return; }
   var ws = splitWords(t.lines[L[n]]);
   V.p.souf = (V.p.souf || 0) + 1;
-  if (box) box.innerHTML = '<div class="souffleur">' + ic('bulb') + 'Ligne ' + (n+1) + ' : « ' + esc(ws.slice(0, 2).join(' ')) + ' … »</div>';
+  if (box) box.innerHTML = '<div class="souffleur">💡 Ligne ' + (n+1) + ' : « ' + esc(ws.slice(0, 2).join(' ')) + ' … »</div>';
 };
 ACT.genCheck = function(){
   var t = curT(), p = V.p, ta = document.getElementById('gen');
   p.draft = ta ? ta.value : (p.draft || '');
-  if (p.draft.replace(/\s/g,'') === ''){ toast('Écris (ou dicte) ta récitation d\'abord !'); return; }
+  if (p.draft.replace(/\s/g,'') === ''){ toast('✍️ Écris (ou dicte) ta récitation d\'abord !'); return; }
   stopDictation();
   var L = p.subset && p.subset.length ? p.subset : learnIdx(t);
   var r = compareText(t.lines, L, p.draft);
@@ -1638,18 +1314,18 @@ ACT.bulkAdd = function(){
 ACT.saveText = function(){
   var d = V.p.d, err = document.getElementById('err');
   d.title = String(d.title).replace(/^\s+|\s+$/g,'');
-  if (!d.title){ err.textContent = 'Donne un titre à ton texte.'; return; }
+  if (!d.title){ err.textContent = '⚠️ Donne un titre à ton texte.'; return; }
   var lines = [], cards = [], i;
   if (d.kind === 'lecon'){
     for (i = 0; i < d.cards.length; i++){
       var q = String(d.cards[i].q).replace(/^\s+|\s+$/g,''), a = String(d.cards[i].a).replace(/^\s+|\s+$/g,'');
       if (q && a) cards.push({ q:q, a:a });
-      else if (q || a){ err.textContent = 'La question ' + (i+1) + ' doit avoir une question ET une réponse.'; return; }
+      else if (q || a){ err.textContent = '⚠️ La question ' + (i+1) + ' doit avoir une question ET une réponse.'; return; }
     }
-    if (!cards.length){ err.textContent = 'Ajoute au moins une question avec sa réponse.'; return; }
+    if (!cards.length){ err.textContent = '⚠️ Ajoute au moins une question avec sa réponse.'; return; }
   } else {
     lines = d.kind === 'poeme' ? splitLines(d.raw) : splitSentences(d.raw);
-    if (!learnIdxArr(lines)){ err.textContent = 'Colle ou écris ton texte.'; return; }
+    if (!learnIdxArr(lines)){ err.textContent = '⚠️ Colle ou écris ton texte.'; return; }
   }
   var t;
   if (V.p.id){
@@ -1666,27 +1342,27 @@ ACT.saveText = function(){
     t = makeText({ kind:d.kind, title:d.title, author:d.author, subject:d.subject, lang:d.lang, due:d.due, lines:lines, cards:cards, color: S.texts.length % COLORS.length });
     S.texts.push(t);
   }
-  save(); toast('« ' + t.title + ' » est à l\'affiche !');
+  save(); toast('🎭 « ' + t.title + ' » est à l\'affiche !');
   go('loge', { id:t.id });
 };
 /* partage */
 ACT.share = function(el){
   var t = getT(el.getAttribute('data-id')), link = shareLink(t), code = shareCode(t);
-  var h = '<h2>' + ic('share') + 'Partager « ' + esc(t.title) + ' »</h2><p>Idéal pour un prof qui envoie le texte à toute sa classe (ENT, Pronote, mail…). Seul le texte est partagé, pas tes étoiles.</p>';
-  if (link) h += '<label class="f">Le lien</label><div class="codebox">' + esc(link) + '</div><button class="btn gold big" data-act="copy" data-what="link">' + ic('copy') + 'Copier le lien</button>';
-  h += '<label class="f">Le code (si le lien ne s\'ouvre pas)</label><div class="codebox">' + esc(code) + '</div><button class="btn ghost big" data-act="copy" data-what="code">' + ic('copy') + 'Copier le code</button>';
-  h += '<p class="small muted">L\'élève ouvre le lien, ou touche « J\'ai reçu un code » sur l\'accueil et le colle.' + (code.length > 6000 ? ' Ce texte est long : préfère le code au lien.' : '') + '</p><button class="btn ghost big" data-act="close">Fermer</button>';
+  var h = '<h2>🔗 Partager « ' + esc(t.title) + ' »</h2><p>Idéal pour un prof qui envoie le texte à toute sa classe (ENT, Pronote, mail…). Seul le texte est partagé, pas tes étoiles.</p>';
+  if (link) h += '<label class="f">Le lien</label><div class="codebox">' + esc(link) + '</div><button class="btn gold big" data-act="copy" data-what="link">📋 Copier le lien</button>';
+  h += '<label class="f">Le code (si le lien ne s\'ouvre pas)</label><div class="codebox">' + esc(code) + '</div><button class="btn ghost big" data-act="copy" data-what="code">📋 Copier le code</button>';
+  h += '<p class="small muted">L\'élève ouvre le lien, ou touche « J\'ai reçu un code » sur l\'accueil et le colle.' + (code.length > 6000 ? ' ⚠️ Ce texte est long : préfère le code au lien.' : '') + '</p><button class="btn ghost big" data-act="close">Fermer</button>';
   SHARE = { link:link, code:code };
   openModal(h);
 };
 var SHARE = null;
-ACT.copy = function(el){ var w = el.getAttribute('data-what'); copyText(w === 'link' ? SHARE.link : SHARE.code, 'Copié !'); };
+ACT.copy = function(el){ var w = el.getAttribute('data-what'); copyText(w === 'link' ? SHARE.link : SHARE.code, '📋 Copié !'); };
 ACT.receive = function(){
-  openModal('<h2>' + ic('inbox') + 'J\'ai reçu un texte</h2><p>Colle ici le code ou le lien envoyé par ton professeur.</p><textarea id="recvCode" class="short" placeholder="B2Y…"></textarea><div class="err" id="recvErr"></div><button class="btn gold big" data-act="recvGo">Ouvrir</button><button class="btn ghost big" data-act="close">Annuler</button>');
+  openModal('<h2>📥 J\'ai reçu un texte</h2><p>Colle ici le code ou le lien envoyé par ton professeur.</p><textarea id="recvCode" class="short" placeholder="B2Y…"></textarea><div class="err" id="recvErr"></div><button class="btn gold big" data-act="recvGo">Ouvrir</button><button class="btn ghost big" data-act="close">Annuler</button>');
 };
 ACT.recvGo = function(){
   var v = (document.getElementById('recvCode') || {}).value || '', d = parseShare(v);
-  if (!d){ document.getElementById('recvErr').textContent = 'Ce code n\'est pas reconnu. Vérifie que tu l\'as copié en entier.'; return; }
+  if (!d){ document.getElementById('recvErr').textContent = '⚠️ Ce code n\'est pas reconnu. Vérifie que tu l\'as copié en entier.'; return; }
   askImport(d);
 };
 ACT.doImport = function(){
@@ -1694,12 +1370,12 @@ ACT.doImport = function(){
   var due = (document.getElementById('impDue') || {}).value || '';
   var d = PENDING; d.due = due; d.color = S.texts.length % COLORS.length;
   var t = makeText(d); S.texts.push(t); save(); PENDING = null; closeModal();
-  toast('Texte ajouté à tes affiches !'); go('loge', { id:t.id });
+  toast('🎭 Texte ajouté à tes affiches !'); go('loge', { id:t.id });
 };
 /* suppression / remise à zéro */
 ACT.delText = function(el){
   var t = getT(el.getAttribute('data-id'));
-  openModal('<h2>' + ic('trash') + 'Supprimer « ' + esc(t.title) + ' » ?</h2><p>Le texte et toutes ses étoiles disparaîtront.</p><button class="btn bad big" data-act="delYes" data-id="' + t.id + '">Oui, supprimer</button><button class="btn ghost big" data-act="close">Non, garder</button>');
+  openModal('<h2>🗑️ Supprimer « ' + esc(t.title) + ' » ?</h2><p>Le texte et toutes ses étoiles disparaîtront.</p><button class="btn bad big" data-act="delYes" data-id="' + t.id + '">Oui, supprimer</button><button class="btn ghost big" data-act="close">Non, garder</button>');
 };
 ACT.delYes = function(el){
   var id = el.getAttribute('data-id');
@@ -1707,7 +1383,7 @@ ACT.delYes = function(el){
 };
 ACT.resetText = function(el){
   var t = getT(el.getAttribute('data-id'));
-  openModal('<h2>' + ic('restart') + 'Repartir de zéro ?</h2><p>Tu gardes le texte, mais ses étoiles, son historique et ses répétitions sont effacés. Pratique pour réapprendre un texte des mois plus tard.</p><button class="btn bad big" data-act="resetYes" data-id="' + t.id + '">Oui, tout reprendre</button><button class="btn ghost big" data-act="close">Annuler</button>');
+  openModal('<h2>↺ Repartir de zéro ?</h2><p>Tu gardes le texte, mais ses étoiles, son historique et ses répétitions sont effacés. Pratique pour réapprendre un texte des mois plus tard.</p><button class="btn bad big" data-act="resetYes" data-id="' + t.id + '">Oui, tout reprendre</button><button class="btn ghost big" data-act="close">Annuler</button>');
 };
 ACT.resetYes = function(el){
   var t = getT(el.getAttribute('data-id'));
@@ -1717,30 +1393,28 @@ ACT.resetYes = function(el){
 };
 /* modales génériques */
 ACT.close = function(){ closeModal(); };
-ACT.closeStar = function(){ closeModal(); if (NEWSTARS.length) flushStars(); else if (NAV_VIEWS[V.name]) render(); };
+ACT.closeStar = function(){ closeModal(); if (NEWSTARS.length) flushStars(); else if (V.name === 'home' || V.name === 'loge') render(); };
 ACT.help = function(){
-  openModal('<h2>' + ic('help') + 'Comment ça marche ?</h2>' +
+  openModal('<h2>❔ Comment ça marche ?</h2>' +
     '<p><b>1. Mets ton texte à l\'affiche.</b> Poème, texte à réciter ou leçon : colle-le, et indique la date de passage.</p>' +
     '<p><b>2. Répète petit à petit.</b> Lecture, puis vers par vers, puis effacement : le texte disparaît jusqu\'au rideau fermé.</p>' +
     '<p><b>3. Passe la générale.</b> Récite sans regarder (à l\'écrit ou au micro). L\'appli te montre ce qui manque.</p>' +
-    '<p><b>4. Reviens les jours suivants.</b> L\'appli te dit quand répéter : un peu chaque jour vaut mieux que tout la veille. La veille du contrôle, le mode veille cible ce que tu ne sais pas encore.</p>' +
-    '<p>Chaque étoile gagnée fait entrer un spectateur dans ta salle.</p>' +
-    '<h3>Pour les professeurs</h3><p class="small">Créez le texte, puis « Partager » : envoyez le lien ou le code à la classe. Chaque élève l\'ajoute dans sa propre appli. Aucune donnée ne quitte l\'appareil des élèves.</p>' +
+    '<p><b>4. Reviens les jours suivants.</b> L\'appli te dit quand répéter : un peu chaque jour vaut mieux que tout la veille. La veille du contrôle, le mode 🌙 cible ce que tu ne sais pas encore.</p>' +
+    '<p>Chaque étoile gagnée fait entrer un spectateur dans ton théâtre. 🎭</p>' +
+    '<h3>Pour les professeurs</h3><p class="small">Créez le texte, puis 🔗 Partager : envoyez le lien ou le code à la classe. Chaque élève l\'ajoute dans sa propre appli. Aucune donnée ne quitte l\'appareil des élèves.</p>' +
     '<button class="btn gold big" data-act="close">C\'est parti !</button>');
 };
 ACT.settings = function(){
   var s = S.settings;
   function seg(key, opts){ var h = '<div class="seg">'; for (var i = 0; i < opts.length; i++) h += '<button class="' + (s[key] === opts[i][0] ? 'on' : '') + '" data-act="setS" data-k="' + key + '" data-v="' + opts[i][0] + '">' + esc(opts[i][1]) + '</button>'; return h + '</div>'; }
-  openModal('<h2>' + ic('gear') + 'Réglages</h2>' +
+  openModal('<h2>⚙️ Réglages</h2>' +
     '<label class="f">Police</label>' + seg('font', [['std','Standard'],['lexend','Lexend (DYS)']]) +
     '<label class="f">Taille du texte</label>' + seg('size', [[1,'Normale'],[2,'Grande'],[3,'Très grande']]) +
     '<label class="f">Espacement des lignes</label>' + seg('spacing', [[1,'Normal'],[2,'Aéré']]) +
     '<label class="f">Vitesse de la voix</label>' + seg('rate', [[0.7,'Lente'],[0.9,'Normale'],[1.1,'Rapide']]) +
-    '<label class="f">Applaudissements</label>' + seg('sound', [[1,'Avec le son'],[0,'Sans le son']]) +
-    '<hr class="sep">' +
-    '<button class="btn ghost big" data-act="diagImg">' + ic('eye') + 'Diagnostic des images</button>' +
-    '<button class="btn ghost big" data-act="reloadDemo">' + ic('ticket') + 'Remettre les textes d\'exemple</button>' +
-    '<button class="btn ghost big" data-act="wipe">' + ic('broom') + 'Tout effacer</button>' +
+    '<hr style="border:0;border-top:1px dashed #e3cfac;margin:16px 0">' +
+    '<button class="btn ghost big" data-act="reloadDemo">🎟️ Remettre les textes d\'exemple</button>' +
+    '<button class="btn ghost big" data-act="wipe">🧹 Tout effacer</button>' +
     '<button class="btn gold big" data-act="close">Fermer</button>');
 };
 ACT.setS = function(el){
@@ -1758,15 +1432,15 @@ ACT.reloadDemo = function(){
   save(); closeModal(); go('home'); toast((S.texts.length - before) + ' texte(s) d\'exemple ajouté(s)');
 };
 ACT.wipe = function(){
-  openModal('<h2>' + ic('broom') + 'Tout effacer ?</h2><p>Tous tes textes et toutes tes étoiles seront supprimés de cet appareil. Fais une sauvegarde avant si tu hésites.</p><button class="btn bad big" data-act="wipeYes">Oui, tout effacer</button><button class="btn ghost big" data-act="close">Annuler</button>');
+  openModal('<h2>🧹 Tout effacer ?</h2><p>Tous tes textes et toutes tes étoiles seront supprimés de cet appareil. Fais une sauvegarde 💾 avant si tu hésites.</p><button class="btn bad big" data-act="wipeYes">Oui, tout effacer</button><button class="btn ghost big" data-act="close">Annuler</button>');
 };
 ACT.wipeYes = function(){ S.texts = []; save(); closeModal(); go('home'); };
 /* sauvegarde */
 ACT.backup = function(){
-  openModal('<h2>' + ic('save') + 'Sauvegarde</h2><p>Tes textes et tes étoiles sont gardés dans ce navigateur. Pour les retrouver sur un autre appareil, ou ne rien perdre si l\'historique est effacé, fais une sauvegarde.</p>' +
-    '<button class="btn gold big" data-act="exportFile">' + ic('download') + 'Télécharger ma sauvegarde</button>' +
-    '<button class="btn ghost big" data-act="exportCopy">' + ic('copy') + 'Copier ma sauvegarde (texte)</button>' +
-    '<button class="btn ghost big" data-act="importFile">' + ic('upload') + 'Charger une sauvegarde (fichier)</button>' +
+  openModal('<h2>💾 Sauvegarde</h2><p>Tes textes et tes étoiles sont gardés dans ce navigateur. Pour les retrouver sur un autre appareil, ou ne rien perdre si l\'historique est effacé, fais une sauvegarde.</p>' +
+    '<button class="btn gold big" data-act="exportFile">⬇️ Télécharger ma sauvegarde</button>' +
+    '<button class="btn ghost big" data-act="exportCopy">📋 Copier ma sauvegarde (texte)</button>' +
+    '<button class="btn ghost big" data-act="importFile">⬆️ Charger une sauvegarde (fichier)</button>' +
     '<label class="f" style="margin-top:10px">… ou colle une sauvegarde copiée</label><textarea id="impTxt" class="short"></textarea><div class="err" id="impErr"></div><button class="btn ghost big" data-act="importTxt">Charger ce texte</button>' +
     '<button class="btn ghost big" data-act="close">Fermer</button>');
 };
@@ -1777,12 +1451,12 @@ ACT.exportFile = function(){
     var a = document.createElement('a');
     a.href = URL.createObjectURL(blob); a.download = 'par-coeur-sauvegarde-' + today() + '.json';
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
-    toast('Sauvegarde téléchargée (si rien ne se passe, utilise « Copier »)');
+    toast('⬇️ Sauvegarde téléchargée (si rien ne se passe, utilise « Copier »)');
   } catch(e){ toast('Téléchargement impossible ici : utilise « Copier »'); }
 };
-ACT.exportCopy = function(){ copyText(backupJSON(), 'Sauvegarde copiée : colle-la dans une note ou un mail'); };
+ACT.exportCopy = function(){ copyText(backupJSON(), '📋 Sauvegarde copiée : colle-la dans une note ou un mail'); };
 ACT.importFile = function(){ document.getElementById('importFile').click(); };
-ACT.importTxt = function(){ var v = (document.getElementById('impTxt') || {}).value || ''; if (!importBackup(v)) document.getElementById('impErr').textContent = 'Ce texte n\'est pas une sauvegarde de Par Cœur !'; };
+ACT.importTxt = function(){ var v = (document.getElementById('impTxt') || {}).value || ''; if (!importBackup(v)) document.getElementById('impErr').textContent = '⚠️ Ce texte n\'est pas une sauvegarde de Par Cœur !'; };
 function importBackup(txt){
   var o; try { o = JSON.parse(txt); } catch(e){ return false; }
   if (!o || (o.app !== 'par-coeur' && o.app !== 'les-coulisses') || !o.texts) return false;
@@ -1793,13 +1467,13 @@ function importBackup(txt){
     fixStrength(t); if (!t.stars) t.stars = { lu:false, repete:false, generale:false, premiere:false }; if (!t.sessions) t.sessions = [];
     if (map[t.id] != null){ S.texts[map[t.id]] = t; upd++; } else { S.texts.push(t); added++; }
   }
-  save(); closeModal(); go('home'); toast('Sauvegarde chargée : ' + added + ' ajouté(s), ' + upd + ' mis à jour');
+  save(); closeModal(); go('home'); toast('💾 ' + added + ' ajouté(s), ' + upd + ' mis à jour');
   return true;
 }
 document.getElementById('importFile').addEventListener('change', function(e){
   var f = e.target.files && e.target.files[0]; if (!f) return;
   var r = new FileReader();
-  r.onload = function(){ if (!importBackup(String(r.result))) toast('Fichier non reconnu'); };
+  r.onload = function(){ if (!importBackup(String(r.result))) toast('⚠️ Fichier non reconnu'); };
   r.readAsText(f); e.target.value = '';
 });
 
@@ -1832,28 +1506,11 @@ document.addEventListener('change', function(e){
 document.addEventListener('keydown', function(e){ if ((e.key === 'Escape' || e.keyCode === 27) && !/hidden/.test(modalEl.className)) closeModal(); });
 if (hasTTS && window.speechSynthesis.onvoiceschanged !== undefined){ window.speechSynthesis.onvoiceschanged = function(){}; }
 
-/* ---------------- navigation ---------------- */
-ACT.tab = function(el){ closeModal(); go(el.getAttribute('data-tab')); };
-window.b2yImgNext = function(el){
-  var src = el.getAttribute('src'), m = src.match(/\.(webp|png|jpg)$/), order = ['webp','png','jpg'];
-  var i = m ? order.indexOf(m[1]) : 2;
-  if (i < 2) el.setAttribute('src', src.replace(/\.(webp|png|jpg)$/, '.' + order[i + 1]));
-  else if (el.parentNode) el.parentNode.removeChild(el);
+/* ---------------- rapport d'erreur visible ---------------- */
+window.onerror = function(msg, src, line){
+  openModal('<h2>😬 Petit souci technique</h2><p>Quelque chose a planté. Fais une capture de ce message pour le prof :</p><div class="codebox">' + esc(String(msg) + ' (ligne ' + line + ') · vue : ' + V.name) + '</div><button class="btn gold big" data-act="close">OK</button>');
+  return false;
 };
-var IMG_LIST = [['scene','Fond de l\'accueil'],['salle','Fond de la salle'],['affiche','Texture des affiches'],['trophee-bronze','Trophée bronze'],['trophee-argent','Trophée argent'],['trophee-or','Trophée or'],['etoile','Trophée Légende']];
-ACT.diagImg = function(){
-  var h = '<h2>' + ic('eye') + 'Diagnostic des images</h2><p class="small muted">L\'appli cherche chaque image dans le dossier <b>img/</b> (en minuscules), à côté du fichier index.html, en .webp, .png ou .jpg.</p><ul class="diag" style="list-style:none;padding:0;margin:0">';
-  for (var i = 0; i < IMG_LIST.length; i++) h += '<li><span><b>' + IMG_LIST[i][1] + '</b><br><small class="muted">img/' + IMG_LIST[i][0] + '.webp</small></span><span id="dg' + i + '" class="muted">…</span></li>';
-  openModal(h + '</ul><p class="small muted">Adresse de la page : ' + esc(String(location.href).split('#')[0]) + '</p><button class="btn gold big" data-act="close">Fermer</button>');
-  function test(i, k){
-    var exts = ['webp','png','jpg'], im = new Image();
-    im.onload = function(){ var el = document.getElementById('dg' + i); if (el){ el.className = 'y'; el.textContent = 'trouvée (.' + exts[k] + ')'; } };
-    im.onerror = function(){ if (k < 2) test(i, k + 1); else { var el = document.getElementById('dg' + i); if (el){ el.className = 'n'; el.textContent = 'introuvable'; } } };
-    im.src = 'img/' + IMG_LIST[i][0] + '.' + exts[k] + '?t=' + Date.now();
-  }
-  for (var j = 0; j < IMG_LIST.length; j++) test(j, 0);
-};
-ACT.nextPractice = function(){ var t = prioritized(); if (t) go('loge', { id:t.id }); else if (S.texts.length) go('texts'); else go('editor', {}); };
 
 /* ---------------- démarrage ---------------- */
 applySettings();
@@ -1863,7 +1520,7 @@ render();
   if (h.indexOf('B2Y') >= 0){
     var d = parseShare(h);
     try { history.replaceState(null, '', String(location.href).split('#')[0]); } catch(e){}
-    if (d) askImport(d); else toast('Lien de partage incomplet');
+    if (d) askImport(d); else toast('⚠️ Lien de partage incomplet');
   }
 })();
 
