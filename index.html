@@ -830,6 +830,7 @@ function readFrom(t, idx, chain){
 var SR = window.SpeechRecognition || window.webkitSpeechRecognition || null;
 var IS_IOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 var IOS_CHROME = IS_IOS && /CriOS|FxiOS|EdgiOS/.test(navigator.userAgent);
+var IS_FIREFOX = /Firefox|FxiOS/.test(navigator.userAgent);
 /* état de la dictée : le texte déjà présent + ce qui a été dicté pendant la session */
 var DICT = { rec:null, on:false, base:'', said:'', restarts:0 };
 function dictSetBtn(on){
@@ -858,7 +859,9 @@ function stopDictation(){
 }
 function dictHelp(kind){
   var h = '<h2>' + ic('mic') + 'La dictée ne démarre pas</h2>';
-  if (kind === 'none'){
+  if (kind === 'none' && IS_FIREFOX){
+    h += '<p><b>Firefox ne sait pas faire la dictée vocale</b> : ce n\'est pas un bug de l\'appli, Firefox n\'a pas cette fonction.</p><p>Pour dicter, ouvre l\'appli dans <b>Chrome</b>, <b>Edge</b> ou <b>Safari</b>.</p>';
+  } else if (kind === 'none'){
     h += IOS_CHROME
       ? '<p>Sur iPhone, <b>Chrome et les autres navigateurs ne savent pas faire la dictée dans une page web</b>. Ouvre l\'appli dans <b>Safari</b>.</p>'
       : '<p>Ce navigateur ne sait pas transformer ta voix en texte. Utilise <b>Safari</b> (iPhone, iPad, Mac) ou <b>Chrome</b> (Android, ordinateur).</p>';
